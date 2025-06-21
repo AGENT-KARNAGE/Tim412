@@ -1,0 +1,936 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+#NAV {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  background-color: #137c54;
+  color: white;
+  position: relative;
+  z-index: 1000;
+   width: 1225PX;
+  height: 50px;
+  margin: 0 auto
+
+}
+
+.LOGO img {
+  height: 50px;
+}
+.img1{
+    /* border: 2px solid black; */
+    border-radius: 100%;
+    width: 100%;
+}
+
+.NavContent {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.Content {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.Content:hover {
+  text-decoration: underline;
+}
+
+.mode-toggle {
+  background: #ffffff22;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.mode-toggle:hover {
+  background: #ffffff44;
+}
+
+/* Responsive visibility */
+.mobile-only {
+  display: none;
+}
+
+.desktop-only {
+  display: flex;
+}
+
+/* Sidebar Toggle (hamburger) */
+.sidebar-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .mobile-only {
+    display: inline-block;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+
+  .NavContent {
+    display: none;
+  }
+}
+
+
+
+
+.BGP{
+    /* border: 2px solid black; */
+    height: 78vh;
+    width: 1245px;
+    margin: auto;
+    position: relative;
+    /* text-align: center; */
+    /* color: white; */
+    
+}
+
+.ImageText{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-100%, -50%);
+    /* border: 2px solid black; */
+    /* font-size: 2em; */
+    color: white;
+}
+
+.phrase{
+   color:  rgb(57, 185, 85);
+}
+
+.backgroundImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sec1Container{
+    /* border: 2px solid black; */
+    padding: 10px;
+    display: flex;
+   
+    align-items: center;
+    justify-content: space-between;
+    width: 1000px;
+    height: 350px;
+    margin: auto;
+}
+
+.Week{
+    /* border: 1px solid rgb(26, 25, 25); */
+    height: 100%;
+    width: 30%;
+    border-radius: 15%;
+}
+
+.Day{
+    /* border: 1px solid rgb(26, 25, 25); */
+    height: 65%;
+    width: 100%;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    position: relative;
+    text-align: center;
+}
+
+.Events{
+    border: 1px solid rgb(26, 25, 25);
+    height: 35%;
+    width: 100%;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    text-align: center;
+    margin-top: 3PX;
+    padding-top: 15px;
+    background-color: rgb(19, 96, 70) ;
+} 
+
+
+.Sec1{
+    padding: 60px;
+}
+
+.DayImage{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-right-radius: 15%;
+    border-top-left-radius: 15%;
+}
+
+.DayText{
+color: white ;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+ 
+.Time{
+    color: white;
+    padding-top: 5px;
+}
+
+.Sec2 {
+  width: 1220px;
+  padding: 40px 10px;
+  margin: auto;
+  background-color: rgb(218, 227, 227);
+}
+
+.WelcomeBanner {
+  width: 400px;
+  height: 50px;
+  margin: -65px auto 20px ;
+  background-color: rgb(19, 96, 70);
+  color: white;
+  text-align: center;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+
+
+.Container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+.EmptyDecor {
+  width: 25%;
+  height: 50vh;
+  background-color: rgb(19, 96, 70);
+  border-radius: 10%;
+  color: white;
+  text-align: center;
+  font-size: 2em;
+  padding-top: 20px;
+}
+
+.TIM {
+  
+  margin-top: 1.8rem;
+
+}
+
+.Timothy {
+  font-size: 3em;
+}
+
+.Words {
+  flex: 1 1 65%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.Sermons{
+    /* border: 2px solid black; */
+    width: 100px;
+    text-align: center;
+    margin: auto;
+    padding-block: 40px;
+    color:rgb(19, 96, 70) ;
+    font-size: 2em;
+}
+
+.SermonContainer{
+    /* border: 2px solid black; */
+    height: 60vh;
+    width: 1220px;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.Vid{
+    /* border: 0.5px solid black; */
+    width: 300px;
+    height: 80%;
+}
+
+.Play{
+    /* border: 2px solid black; */
+    height: 70%;
+}
+
+.Name{
+    /* border: 2px solid black; */
+    margin-top: 5px;
+    height: 20%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color:rgb(19, 96, 70) ;
+    color: white;
+    text-align: center;
+    font-size: 1.4em;
+    padding-top: 5px;
+}
+
+.Sec4{
+      /* border: 2px solid black;/ */
+      padding: 10px;
+      /* display: flex; */
+      /* flex-direction: column; */
+      /* align-items: center; */
+      /* justify-content: center; */
+      width: 1220px;
+      height: 400px;
+      margin: auto;
+      background-color: rgb(218, 227, 227);
+  }
+
+
+
+/* App theme toggling */
+.app.light {
+  background-color: #fff;
+  color: #222;
+}
+
+.app.dark {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+.sidebar-toggle,
+.mode-toggle {
+  background: #137c54;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.sidebar-toggle:hover,
+.mode-toggle:hover {
+  background: #0f5f40;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 70px;
+  left: 15px; /* slight space from left */
+  bottom: 15px; /* space from bottom */
+  width: 220px;
+  padding: 20px;
+  background: #137c54;
+  border-radius: 16px; /* rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 999;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 0;
+  transition: transform 0.2s;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+  transform: translateX(5px);
+}
+
+/* Sidebar Slide-In */
+.sidebar.slide-in {
+  position: fixed;
+  top: 70px;
+  left: -300px;
+  bottom: 15px;
+  width: 220px;
+  padding: 20px;
+  background: #137c54;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 999;
+  transition: left 0.3s ease;
+}
+
+.sidebar.slide-in.open {
+  left: 15px;
+}
+
+/* App container transition */
+.app {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Toggle button animation */
+.mode-toggle {
+  background: #ffffff22;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.mode-toggle:hover {
+  background: #ffffff44;
+  transform: scale(1.05);
+}
+
+.app.dark .DevotionalSection {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+  border-top: 1px solid #333;
+}
+
+.app.dark .DevotionalSection h2,
+.app.dark .DevotionalSection p {
+  color: #e0e0e0;
+}
+
+.app.dark .DevotionalSection .devotional-card {
+  background-color: #2c2c2c;
+  border: 1px solid #444;
+}
+
+/* Optional button/link styling inside DevotionalSection */
+.app.dark .DevotionalSection a,
+.app.dark .DevotionalSection button {
+  color: #90ee90;
+}
+
+.app.dark .Sec2 {
+  background-color: #101010;
+  color: #f1f1f1;
+  border-top: 1px solid #222;
+}
+
+.app.dark .Sec2 .WelcomeBanner .welcomeText {
+  color: #90ee90;
+}
+
+.app.dark .Sec2 .EmptyDecor h1,
+.app.dark .Sec2 .EmptyDecor .Timothy {
+  color: #90ee90;
+  text-shadow: 1px 1px 3px #000;
+}
+
+.app.dark .Sec2 .Words p,
+.app.dark .Sec2 .Words h4 {
+  color: #dddddd;
+}
+
+.app.dark .Sec4 {
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+  border-top: 1px solid #333;
+  padding: 20px;
+}
+
+.app.dark .Sec4 h2,
+.app.dark .Sec4 h3,
+.app.dark .Sec4 p {
+  color: #e0e0e0;
+}
+
+.app.dark .Sec4 .section-title {
+  color: #90ee90; /* optional highlight color */
+}
+
+.app.dark .Sec4 a {
+  color: #90ee90;
+  text-decoration: underline;
+}
+
+.app.dark .Sec4 a:hover {
+  color: #b5ffb5;
+}
+
+.app.dark .ActivateForm {
+  background-color: #1e1e1e;
+  border-color: #333;
+  color: #f1f1f1;
+}
+
+.app.dark .ActivateForm input,
+.app.dark .ActivateForm textarea {
+  background-color: #2a2a2a;
+  color: #f1f1f1;
+  border: 1px solid #444;
+}
+
+.app.dark .ActivateForm button {
+  background-color: #228b63;
+}
+
+.app.dark .ActivateForm button:hover {
+  background-color: #1a5a44;
+}
+
+.app.dark .events-wrapper {
+  background-color: #1e1e1e;
+  border: 1px solid #2f2f2f;
+}
+
+.admin-dashboard {
+  display: flex;
+  gap: 20px;
+}
+
+.admin-sidebar {
+  width: 220px;
+  min-height: 100%;
+  background-color: #e6f4ec;
+  border-radius: 12px;
+  padding: 20px 15px;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 20px;
+}
+
+.admin-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-sidebar li {
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  font-weight: 500;
+  color: #137c54;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.admin-sidebar li:hover,
+.admin-sidebar li.active {
+  background-color: #137c54;
+  color: #fff;
+}
+
+/* === RESPONSIVE BREAKPOINTS === */
+@media (max-width: 768px) {
+  .mobile-only {
+    display: inline-block;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+
+  #NAV{
+    width:94.9%;
+  }
+
+  .NavContent {
+    display: none;
+  }
+
+  .BGP{
+    width:100%;
+  }
+
+  .ImageText {
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    text-align: center;
+    width: 90%;
+  }
+
+  .Container {
+    flex-direction: column;
+  }
+
+  .sec1Container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .Week {
+    width: 90%;
+  }
+
+  .SermonContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sidebar {
+    width: 85%;
+    left: 7%;
+    top: 60px;
+  }
+
+  .sidebar.slide-in.open {
+    left: 7%;
+  }
+
+  .WelcomeBanner {
+    margin-top: 0;
+    width: 90%;
+  }
+
+  .Sec2{
+    width:90%;
+  }
+
+  
+
+  .Words {
+    padding: 0 10px;
+  }
+}
+
+
+/* ABOUT US, VISION & MISSION */
+.about-us h2 {
+  font-size: 1.8rem;
+  color: #137c54;
+}
+
+.about-us p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.vision-mission-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.vision-box,
+.mission-box {
+  flex: 1 1 300px;
+  background-color: #fff;
+  border-left: 5px solid #137c54;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.app.dark .vision-box,
+.app.dark .mission-box {
+  background-color: #2b2b2b;
+  border-left: 5px solid #90ee90;
+  color: #e0e0e0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+.vision-box h3,
+.mission-box h3 {
+  color: #137c54;
+  margin-bottom: 0.75rem;
+}
+
+.vision-box p,
+.mission-box p {
+  color: #444;
+  line-height: 1.6;
+}
+
+.pastor-signature {
+  font-weight: bold;
+  color: #137c54;
+}
+
+/* DARK MODE SUPPORT */
+.app.dark {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+.app.dark .Sec2 {
+  background-color: #101010;
+  color: #f1f1f1;
+  border-top: 1px solid #222;
+}
+
+.app.dark .WelcomeBanner {
+  background-color: #137c54;
+}
+
+.app.dark .EmptyDecor {
+  background-color: #137c54;
+}
+
+.app.dark .about-us h2,
+.app.dark .vision-box h3,
+.app.dark .mission-box h3 {
+  color: #90ee90;
+}
+
+.app.dark .about-us p,
+.app.dark .vision-box p,
+.app.dark .mission-box p {
+  color: #ddd;
+}
+
+.app.dark .pastor-signature {
+  color: #90ee90;
+}
+
+:root {
+  --bg: #f4f9f4;
+  --container-bg: #ffffff;
+  --input-bg: #ffffff;
+  --text: #000000;
+  --link: #137c54;
+  --input-border: #ccc;
+  --box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] {
+  --bg: #0f1a17;
+  --container-bg: #1c2b27;
+  --input-bg: #223630;
+  --text: #f1f1f1;
+  --link: #3be3b5;
+  --input-border: #35594f;
+  --box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.WelcomeBanner {
+  margin-top: 40px;
+  transition: margin-top 0.3s ease;
+}
+
+.WelcomeBanner.logged-in {
+  margin-top: 100px;
+}
+
+.footer {
+  background-color: #f4fdf8;
+  color: #333;
+  padding: 40px 20px 20px;
+  border-top: 2px solid #137c54;
+  margin-top: 60px;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-section {
+  flex: 1 1 250px;
+}
+
+.footer-section h3 {
+  margin-bottom: 10px;
+  color: #137c54;
+}
+
+.footer-section p,
+.footer-section a {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #333;
+  text-decoration: none;
+}
+
+.footer-section .icons {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.footer-section .icons a {
+  font-size: 1.5rem;
+  color: #137c54;
+  transition: color 0.3s;
+}
+
+.footer-section .icons a:hover {
+  color: #0f5f40;
+}
+
+.footer-section.newsletter form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-section.newsletter input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.footer-section.newsletter button {
+  padding: 10px;
+  background-color: #137c54;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.app.dark .footer {
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+  border-top-color: #333;
+}
+
+.app.dark .footer-section h3 {
+  color: #90ee90;
+}
+
+.app.dark .footer-section a,
+.app.dark .footer-section p {
+  color: #ccc;
+}
+
+.app.dark .footer-section .icons a {
+  color: #90ee90;
+}
+
+.app.dark .footer-section .icons a:hover {
+  color: #72c674;
+}
+
+.app.dark .footer-section.newsletter input {
+  background-color: #2b2b2b;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+.app.dark .footer-section.newsletter button {
+  background-color: #228b63;
+}
+
+.footer-section .whatsapp-btn {
+  color: #25D366;
+}
+
+.footer-section .whatsapp-btn:hover {
+  color: #1ebe57;
+}
+
+.footer-section .address-link {
+  display: inline-block;
+  color: #137c54;
+  text-decoration: underline;
+  margin-left: 4px;
+}
+
+.footer-section .address-link:hover {
+  color: #0f5f40;
+}
+
+/* Dark mode */
+.app.dark .footer-section .whatsapp-btn {
+  color: #25D366;
+}
+
+.app.dark .footer-section .address-link {
+  color: #90ee90;
+}
+
+.app.dark .footer-section .address-link:hover {
+  color: #72c674;
+}
+
+
+/* RESPONSIVE BREAKPOINTS */
+@media (max-width: 768px) {
+  .vision-mission-container {
+    flex-direction: column;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-section {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .WelcomeBanner {
+    margin-top: 20px;
+    padding: 8px;
+  }
+
+  .about-us h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .about-us p {
+    font-size: 0.95rem;
+    text-align: justify;
+  }
+
+  .footer-section.newsletter form {
+    align-items: center;
+  }
+
+  .footer-section.newsletter input,
+  .footer-section.newsletter button {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+
+
+
+
+
+
+
