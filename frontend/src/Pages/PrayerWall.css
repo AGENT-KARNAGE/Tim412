@@ -1,0 +1,131 @@
+/* PrayerWall.css */
+.prayer-wall {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 2px solid #137c54;
+  border-radius: 12px;
+  background-color: #f4fdf8;
+}
+
+.prayer-wall h2 {
+  text-align: center;
+  color: #137c54;
+  margin-bottom: 20px;
+}
+
+.prayer-wall form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.prayer-wall textarea {
+  resize: vertical;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  min-height: 100px;
+  font-size: 1rem;
+}
+
+.prayer-wall button {
+  background-color: #137c54;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.prayer-wall button:hover {
+  background-color: #0f5f40;
+}
+
+.prayer-wall ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.prayer-wall li {
+  background: #fff;
+  border: 1px solid #d0e3db;
+  border-left: 5px solid #137c54;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+.app.dark .prayer-wall {
+  background-color: #1f1f1f;
+  color: #f0f0f0;
+  border-color: #333;
+}
+
+.app.dark .prayer-wall h2 {
+  color: #90ee90;
+}
+
+.app.dark .prayer-wall textarea {
+  background-color: #2a2a2a;
+  color: #f1f1f1;
+  border: 1px solid #555;
+}
+
+.app.dark .prayer-wall button {
+  background-color: #228b63;
+}
+
+.app.dark .prayer-wall button:hover {
+  background-color: #1b6e4f;
+}
+
+.app.dark .prayer-wall li {
+  background: #2d2d2d;
+  border-color: #444;
+  border-left-color: #90ee90;
+  color: #eaeaea;
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 768px) {
+  .prayer-wall {
+    margin: 20px 10px;
+    padding: 15px;
+  }
+
+  .prayer-wall h2 {
+    font-size: 1.5rem;
+  }
+
+  .prayer-wall textarea {
+    font-size: 0.95rem;
+  }
+
+  .prayer-wall button {
+    padding: 8px 12px;
+    font-size: 0.95rem;
+  }
+
+  .prayer-wall li {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .prayer-wall {
+    margin: 15px 5px;
+    padding: 10px;
+  }
+
+  .prayer-wall h2 {
+    font-size: 1.3rem;
+  }
+
+  .prayer-wall button {
+    width: 100%;
+  }
+}

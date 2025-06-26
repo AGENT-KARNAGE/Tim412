@@ -1,0 +1,269 @@
+.auth-container {
+  max-width: 400px;
+  text-align: center;
+  padding: 24px;
+  background-color: #f4fdf8;
+  border: 2px solid #137c54;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+.alert-box {
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
+  color: #92400e;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.alert-box .btn {
+  margin-top: 10px;
+  padding: 6px 12px;
+  border: none;
+  background: #facc15;
+  color: #000;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.auth-container h2 {
+  color: #137c54;
+  margin-bottom: 16px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.auth-container input,
+.auth-container select {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.auth-container button {
+  margin-top: 10px;
+  background-color: #137c54;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.auth-container button:hover {
+  background-color: #0f5f40;
+}
+
+.auth-container .toggle {
+  background: none;
+  border: none;
+  color: #137c54;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.auth-container .signout {
+  background-color: #aaa;
+  color: #fff;
+}
+
+.app.dark .auth-container {
+  background-color: #1f1f1f;
+  color: #f0f0f0;
+  border-color: #333;
+}
+
+.app.dark .auth-container h2 {
+  color: #90ee90;
+}
+
+.app.dark .auth-container input,
+.app.dark .auth-container select {
+  background-color: #2a2a2a;
+  color: #f0f0f0;
+  border: 1px solid #555;
+}
+
+.app.dark .auth-container button {
+  background-color: #228b63;
+  color: white;
+}
+
+.app.dark .auth-container button:hover {
+  background-color: #1b6e4f;
+}
+
+.app.dark .auth-container .toggle {
+  color: #90ee90;
+}
+
+.app.dark .auth-container .signout {
+  background-color: #555;
+  color: #fff;
+}
+
+/* Responsiveness */
+.auth-container {
+  max-width: 400px;
+  width: 90%;
+  margin: 20px auto;
+  text-align: center;
+  padding: 24px;
+  background-color: #f4fdf8;
+  border: 2px solid #137c54;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.auth-container h2 {
+  color: #137c54;
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.auth-container input,
+.auth-container select {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.auth-container button {
+  margin-top: 10px;
+  background-color: #137c54;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
+}
+
+.auth-container button:hover {
+  background-color: #0f5f40;
+}
+
+.auth-container .toggle {
+  background: none;
+  border: none;
+  color: #137c54;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.95rem;
+  margin-top: 8px;
+}
+
+.auth-container .signout {
+  background-color: #aaa;
+  color: #fff;
+}
+
+/* Dark Mode */
+.app.dark .auth-container {
+  background-color: #1f1f1f;
+  color: #f0f0f0;
+  border-color: #333;
+}
+
+.app.dark .auth-container h2 {
+  color: #90ee90;
+}
+
+.app.dark .auth-container input,
+.app.dark .auth-container select {
+  background-color: #2a2a2a;
+  color: #f0f0f0;
+  border: 1px solid #555;
+}
+
+.app.dark .auth-container button {
+  background-color: #228b63;
+  color: white;
+}
+
+.app.dark .auth-container button:hover {
+  background-color: #1b6e4f;
+}
+
+.app.dark .auth-container .toggle {
+  color: #90ee90;
+}
+
+.app.dark .auth-container .signout {
+  background-color: #555;
+  color: #fff;
+}
+
+/* Responsive Media Queries */
+@media screen and (max-width: 480px) {
+  .auth-container {
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .auth-container h2 {
+    font-size: 1.25rem;
+  }
+
+  .auth-container input,
+  .auth-container select,
+  .auth-container button {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  .auth-container .toggle {
+    font-size: 0.85rem;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .auth-container h2 {
+    font-size: 1.1rem;
+  }
+
+  .auth-container {
+    padding: 12px;
+  }
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 120vh;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* Optional: Add background change in dark mode */
+.app.dark .wrapper {
+  background-color: #121212;
+}
+
+/* Responsive tweak for smaller screens */
+@media screen and (max-width: 480px) {
+  .wrapper {
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 12px;
+  }
+}
+
+

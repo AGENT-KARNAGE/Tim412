@@ -1,0 +1,733 @@
+.ActivateForm {
+  max-width: 600px;
+  margin: 40px auto;
+  background-color: #f4fdf8;
+  border: 2px solid #137c54;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+.ActivateForm h2 {
+  color: #137c54;
+  margin-bottom: 20px;
+}
+
+.ActivateForm form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ActivateForm input,
+.ActivateForm textarea {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.ActivateForm button {
+  background-color: #137c54;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.ActivateForm button:hover {
+  background-color: #0f5f40;
+}
+
+.events-wrapper {
+  background-color: #e6f8ef; /* light green background */
+  padding: 30px 20px;
+  border-radius: 16px;
+  margin: 20px auto;
+  max-width: 1200px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.ActivateForm {
+  flex: 1;
+  min-width: 280px;
+  max-width: 500px;
+  background-color: #f4fdf8;
+  border: 2px solid #137c54;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.ActivateForm h2 {
+  color: #137c54;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.ActivateForm form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ActivateForm input,
+.ActivateForm textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.ActivateForm button {
+  background-color: #137c54;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.ActivateForm button:hover {
+  background-color: #0f5f40;
+}
+
+.app.dark .ActivateForm {
+  background-color: #1f1f1f;
+  border-color: #333;
+  color: #f1f1f1;
+}
+
+.app.dark .ActivateForm input,
+.app.dark .ActivateForm textarea {
+  background-color: #2a2a2a;
+  color: #f0f0f0;
+  border: 1px solid #444;
+}
+
+.app.dark .ActivateForm button {
+  background-color: #228b63;
+}
+
+.app.dark .ActivateForm button:hover {
+  background-color: #1a5a44;
+}
+
+.carousel-wrapper {
+  /* overflow: hidden; */
+  width: 100%;
+}
+
+.carousel {
+  display: flex;
+  width: calc(100% * (5 / 3)); /* account for all items with 3 visible at a time */
+  transition: transform 0.6s ease-in-out;
+}
+
+.carousel-wrapper {
+  overflow: hidden;
+}
+
+
+
+.carousel-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+.sec1Container.carousel {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s ease-in-out;
+  justify-content: center; /* ensures cards are centered */
+}
+
+.Week {
+  flex: 0 0 300px;
+  max-width: 300px;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  height: 350px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* space between image and text */
+  box-sizing: border-box;
+}
+
+
+
+.carousel-wrapper {
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.sec1Container.carousel {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  transition: transform 0.5s ease-in-out;
+  max-width: 1000px; /* or whatever container width you want */
+}
+
+
+.events-wrapper-green {
+  background-color: #e6f8ef;
+  padding: 40px 20px;
+  border-radius: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.carousel-wrapper {
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.sec1Container.carousel {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s ease-in-out;
+  justify-content: center;
+}
+
+
+
+/* 🌙 Dark Mode Styles */
+.app.dark .events-wrapper-green {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+}
+
+.app.dark .Week {
+  background-color: #292929;
+  border: 1px solid #444;
+  color: #f1f1f1;
+}
+
+.app.dark .DayText h2,
+.app.dark .Events h2,
+.app.dark .Events .Time {
+  color: #e0e0e0;
+}
+
+.app.dark .ActivateForm {
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  color: #f1f1f1;
+}
+
+.app.dark .ActivateForm h2 {
+  color: #00e596;
+}
+
+.app.dark .ActivateForm input,
+.app.dark .ActivateForm textarea {
+  background-color: #3a3a3a;
+  border: 1px solid #555;
+  color: #f0f0f0;
+}
+
+.app.dark .ActivateForm button {
+  background-color: #00b37f;
+}
+
+.app.dark .ActivateForm button:hover {
+  background-color: #009b6b;
+}
+
+.admin-login-box {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #f1fff4;
+  border-radius: 12px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.admin-login-box input {
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.admin-dashboard {
+  background: #f0fdf5;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.admin-entry {
+  background: #ffffff;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+
+.admin-login-box {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #f1fff4;
+  border-radius: 12px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.admin-login-box input {
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.admin-dashboard {
+  background: #f0fdf5;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.admin-entry {
+  background: #ffffff;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.app.dark .admin-login-box {
+  background-color: #1e1e1e;
+  border: 1px solid #444;
+  color: #e0e0e0;
+}
+.app.dark .admin-login-box input {
+  background-color: #2a2a2a;
+  color: #f0f0f0;
+  border: 1px solid #555;
+}
+.app.dark .admin-dashboard {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+.app.dark .admin-entry {
+  background-color: #1f1f1f;
+  border: 1px solid #333;
+}
+
+.NavContent a[href="/admin"],
+.sidebar a[href="/admin"] {
+  color: #e0e0e0;
+  font-weight: bold;
+}
+.app.dark .NavContent a[href="/admin"],
+.app.dark .sidebar a[href="/admin"] {
+  color: #00e596;
+}
+
+/* Admin Dashboard Container */
+.admin-dashboard {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 1100px;
+  margin: 2rem auto;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+/* Admin header */
+.admin-dashboard h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+/* Metrics Cards Row */
+.admin-metrics {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.metric-card {
+  flex: 1;
+  background: var(--card-secondary);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  text-align: center;
+}
+.metric-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+}
+.metric-card p {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+/* Registrant List Styling */
+.admin-entry-list {
+  margin-bottom: 2rem;
+}
+.admin-entry-list h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+}
+.admin-entry {
+  display: flex;
+  justify-content: space-between;
+  background: var(--card-secondary);
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+  border-radius: 6px;
+  align-items: center;
+}
+.admin-entry p {
+  margin: 0;
+  color: var(--text-primary);
+}
+.admin-entry button {
+  background: var(--danger);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+.admin-entry button:hover {
+  background: #c5302b;
+}
+
+/* Admin Login Box */
+.admin-login-box {
+  background: var(--card-bg);
+  padding: 2rem;
+  max-width: 400px;
+  margin: 3rem auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+.admin-login-box h2 {
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+.admin-login-box input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 1rem;
+  color: var(--text-primary);
+  background: var(--input-bg);
+}
+.admin-login-box button {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+.admin-login-box button:hover {
+  background: #00a574;
+}
+
+/* Dark mode tweaks */
+.app.dark {
+  --card-bg: #1e1e1e;
+  --card-secondary: #2a2a2a;
+  --input-bg: #333;
+  --border: #444;
+  --text-primary: #e0e0e0;
+  --text-secondary: #ccc;
+  --accent: #00e596;
+  --danger: #e74c3c;
+}
+.app.light {
+  --card-bg: #fff;
+  --card-secondary: #f9fafb;
+  --input-bg: #fff;
+  --border: #ddd;
+  --text-primary: #333;
+  --text-secondary: #555;
+  --accent: #009879;
+  --danger: #e53e3e;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Light Theme */
+.youth-section {
+  padding: 2rem;
+  background-color: #f7fdf7;
+  color: #222;
+}
+
+.youth-of-month-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: #e6ffe6;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 100, 0, 0.1);
+}
+
+.youth-image-wrapper {
+  text-align: center;
+  flex: 1;
+  min-width: 220px;
+}
+
+.youth-image {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  border-radius: 1rem;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.youth-name {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #006400;
+}
+
+.youth-writeup {
+  flex: 2;
+  min-width: 280px;
+}
+
+.youth-writeup h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #004d00;
+}
+
+.youth-writeup p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #333;
+}
+
+/* Dark Mode Overrides */
+.app.dark .youth-section {
+  background-color: #111;
+  color: #f0f0f0;
+}
+
+.app.dark .youth-of-month-container {
+  background-color: #1c1c1c;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+}
+
+.app.dark .youth-image {
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+}
+
+.app.dark .youth-name {
+  color: #90ee90;
+}
+
+.app.dark .youth-writeup h2 {
+  color: #c6f6c6;
+}
+
+.app.dark .youth-writeup p {
+  color: #ccc;
+}
+
+.Day {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.DayImage {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.DayText {
+  margin-top: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.Events {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.Time {
+  font-size: 0.9rem;
+  margin: 4px 0;
+  color: #f9f9f9;
+}
+
+/* Base carousel and form layout adjustments for mobile */
+@media (max-width: 768px) {
+  /* Form container layout */
+  .form-row {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1rem auto;
+    width: 90%;
+   
+  }
+
+  /* Individual form boxes */
+  .ActivateForm {
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+
+  .ActivateForm input,
+  .ActivateForm textarea {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+    box-sizing: border-box;
+  }
+
+  .ActivateForm button {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+
+  /* Carousel container */
+  .carousel-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 1rem 0;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+
+  .sec1Container.carousel {
+    display: flex;
+    flex-direction: row; /* Stay horizontal */
+    gap: 16px;
+    width: max-content;
+  }
+
+  .Week {
+    flex: 0 0 85%;
+    max-width: 85%;
+    scroll-snap-align: start;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+
+  .DayImage {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .DayText h2,
+  .Events h2 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .Time {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+ .events-wrapper-green {
+  width: 110vw;
+  min-height: 100vh;
+  background-color: #fff;
+  box-sizing: border-box;
+  margin-right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* horizontal centering */
+  justify-content: center; /* vertical centering if needed */
+  padding: 1rem;
+ }
+
+ .Sec1 {
+  display: flex;
+  justify-content: center;  /* Centers horizontally */
+  align-items: center;      /* Centers vertically */
+  min-height: 100vh;
+  
+}
+
+
+
+}
+
+
+
+
+
+
+
