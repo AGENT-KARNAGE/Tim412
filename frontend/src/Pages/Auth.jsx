@@ -55,7 +55,7 @@ useEffect(() => {
   if (alertVisible) {
     const timeout = setTimeout(() => {
       setAlertVisible(false);
-    }, 4000);
+    }, 41000);
 
     return () => clearTimeout(timeout);
   }
@@ -81,7 +81,7 @@ useEffect(() => {
   return;
 }
 
-if (isRegistering && (age < 18 || age > 24)) {
+if (isRegistering && (age < 16 || age > 24)) {
   setAlertText("Please visit our main church site instead: https://newsprings-raqf.vercel.app/");
   setAlertVisible(true);
   return;
@@ -150,7 +150,7 @@ if (isRegistering && (age < 18 || age > 24)) {
     {
       alertText.includes('http') ? (
         <p>
-          Please visit our main site:{" "}
+          Please visit our main site the youth church age range is from 16 - 24 and you are currently {age} :{" "}
           <a href={alertText.match(/https?:\/\/\S+/)?.[0]} target="_blank" rel="noopener noreferrer">
             {alertText.match(/https?:\/\/\S+/)?.[0]}
           </a>

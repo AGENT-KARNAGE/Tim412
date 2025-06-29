@@ -83,3 +83,26 @@ exports.login = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+// Fetch all User
+exports.allUsers = async(req,res)=>{
+   try{
+    const allUsers = await User.find({})
+    return res.json({allUsers})
+   }
+   catch(err){
+    console.error("error while sending loading all users:", err)
+     res.status(500).json({ error: "Failed to fetch users" });
+  }
+}
+
+// Delete all User
+exports.delAllUsers = async (req, res) => {
+  try {
+    const result = await User.deleteMany({}); // ✅ use deleteMany
+    res.json({ message: "All users deleted", result });
+  } catch (err) {
+    console.error("Error while deleting all users:", err);
+    res.status(500).json({ error: "Failed to delete all users" });
+  }
+};
