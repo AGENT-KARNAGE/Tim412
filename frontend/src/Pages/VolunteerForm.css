@@ -26,6 +26,12 @@
   border-radius: 8px;
   font-size: 1rem;
 }
+.styled-input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
 
 .volunteer-form button {
   background-color: #137c54;
@@ -56,6 +62,20 @@
   margin-bottom: 10px;
   border-radius: 6px;
   font-weight: 500;
+}
+
+.success-message {
+  color: green;
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
 }
 
 /* 🌙 Dark Mode */

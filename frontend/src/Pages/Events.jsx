@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './Events.css';
 import sundayImage from '../Assets/images/daniel-gutko-Op-UUTQLGtI-unsplash.jpg';
 import tuesdayImage from '../Assets/images/samantha-sophia-NaWKMlp3tVs-unsplash.jpg';
 import thursdayImage from '../Assets/images/nathan-mullet-pmiW630yDPE-unsplash.jpg';
-import { db } from '../firebase-config';
-import { collection, addDoc } from 'firebase/firestore';
 
 const Events = () => {
   const [activateForm, setActivateForm] = useState({
@@ -32,19 +31,19 @@ const Events = () => {
 
   const handleSubmit = async (e, formData, formSetter, programName) => {
     e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5110/api/registration', {
+        ...formData,
+        program: programName
+      });
 
-    const collectionName =
-      programName === 'Activate 1.0'
-        ? 'activateRegistrations'
-        : 'youngAndWinningRegistrations';
+      alert(`🎉 Thank you for registering for ${programName}`);
+      formSetter({ fullName: '', age: '', email: '', phone: '', address: '' });
 
-    await addDoc(collection(db, collectionName), {
-      ...formData,
-      timestamp: new Date()
-    });
-
-    formSetter({ fullName: '', age: '', email: '', phone: '', address: '' });
-    alert(`Thank you for registering for ${programName}`);
+    } catch (error) {
+      console.error('❌ Error submitting form:', error);
+      alert('Something went wrong. Please try again.');
+    }
   };
 
   const services = [
@@ -116,6 +115,7 @@ const Events = () => {
         </div>
 
         <div className="form-row">
+          {/* Activate 1.0 Form */}
           <div className="ActivateForm">
             <h2>Register for Activate 1.0</h2>
             <form onSubmit={(e) => handleSubmit(e, activateForm, setActivateForm, 'Activate 1.0')}>
@@ -128,6 +128,7 @@ const Events = () => {
             </form>
           </div>
 
+          {/* Young & Winning Form */}
           <div className="ActivateForm">
             <h2>Register for Young & Winning</h2>
             <form onSubmit={(e) => handleSubmit(e, youngForm, setYoungForm, 'Young & Winning')}>

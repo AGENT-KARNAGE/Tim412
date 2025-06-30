@@ -1,56 +1,74 @@
-import React, { useState, useEffect } from 'react';
-import { db } from '../firebase-config';
-import { collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp } from 'firebase/firestore';
+import React, { useState } from 'react'; 
+// import { db } from '../firebase-config';
+// import { collection, addDoc } from 'firebase/firestore';
 import './TestimonyCorner.css';
+import axios from 'axios';
 
-const TestimonyCorner = ({ user }) => {
-  const [testimony, setTestimony] = useState('');
-  const [testimonies, setTestimonies] = useState([]);
+const TestimonyCorner = () => {
+  const [formData, setFormData] = useState({ name: '', email: '', testimony: '' });
+  const [successMsg, setSuccessMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!testimony.trim()) return;
-    await addDoc(collection(db, 'testimonies'), {
-      testimony,
-      user: user?.email || 'Anonymous',
-      created: serverTimestamp()
-    });
-    setTestimony('');
-    fetchTestimonies();
-  };
+    setSuccessMsg('');
+    setErrorMsg('');
+    if (!formData.testimony.trim()) {
+      setErrorMsg('Please enter a testimony.');
+      return;
+    }
 
-  const handleDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete this testimony?')) {
-      await deleteDoc(doc(db, 'testimonies', id));
-      fetchTestimonies();
+    try {
+      await axios.post('http://localhost:5110/api/testimonies-volunteers', {
+        ...formData,
+        type: 'testimony'
+      });
+
+      setFormData({ name: '', email: '', testimony: '' });
+      setSuccessMsg('Thank you for sharing your testimony!');
+    } catch (err) {
+      console.error("❌ Error submitting testimony:", err.message);
+      setErrorMsg('Something went wrong. Please try again.');
     }
   };
-
-  const fetchTestimonies = async () => {
-    const snapshot = await getDocs(collection(db, 'testimonies'));
-    const data = snapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
-    }));
-    setTestimonies(data.sort((a, b) => b.created?.seconds - a.created?.seconds));
-  };
-
-  useEffect(() => {
-    fetchTestimonies();
-  }, []);
 
   return (
     <div className="testimony-corner">
       <h2>🎉 Testimony Corner</h2>
       <form onSubmit={handleSubmit}>
+        <input
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="Your Name"
+          required
+        />
+        <input
+          name="email"
+          type="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Your Email"
+          required
+        />
         <textarea
-          value={testimony}
-          onChange={e => setTestimony(e.target.value)}
+          name="testimony"
+          value={formData.testimony}
+          onChange={handleChange}
           placeholder="Share your testimony"
+          required
         />
         <button type="submit">Share</button>
       </form>
-         </div>
+
+      {successMsg && <p className="success-message">{successMsg}</p>}
+      {errorMsg && <p className="error-message">{errorMsg}</p>}
+    </div>
   );
 };
 

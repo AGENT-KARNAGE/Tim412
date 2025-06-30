@@ -4,31 +4,31 @@ import "./thisweek.css"; // Keep your styling
 // Replace local videos with YouTube embed URLs
 const sermons = [
   {
-    video: "https://www.youtube.com/embed/lR1Hk0FVi_k", // Pastor E.A. Adeboye – God of Miracles
+    video: "https://www.youtube.com/embed/lR1Hk0FVi_k",
     title: "God of Miracles – Pastor E.A. Adeboye"
   },
   {
-    video: "https://www.youtube.com/embed/6uR-7qJqxMk", // Apostle Joshua Selman – The Power of Prayer
+    video: "https://www.youtube.com/embed/rLWseubRH8Y",
     title: "The Power of Prayer – Apostle Joshua Selman"
   },
   {
-    video: "https://www.youtube.com/embed/3O0nZgqfvtI", // Pastor Paul Enenche – Finishing Strong
+    video: "https://www.youtube.com/embed/M8qJr2qERso",
     title: "Finishing Strong – Pastor Paul Enenche"
   },
   {
-    video: "https://www.youtube.com/embed/k5mW1GVs05c", // Bishop David Oyedepo – Understanding Faith
+    video: "https://www.youtube.com/embed/X2CCMQnQHAM",
     title: "Understanding Faith – Bishop David Oyedepo"
   },
   {
-    video: "https://www.youtube.com/embed/roNIQFEsn7Q", // Apostle Michael Orokpo – Purity and Power
+    video: "https://www.youtube.com/embed/M8qJr2qERso?start=41",
     title: "Purity and Power – Apostle Michael Orokpo"
   },
   {
-    video: "https://www.youtube.com/embed/tPKEpmL9c-4", // Pastor Mensa Otabil – The Word and Your Destiny
+    video: "https://www.youtube.com/embed/g5Rel7_VFfM",
     title: "The Word & Your Destiny – Pastor Mensa Otabil"
   },
   {
-    video: "https://www.youtube.com/embed/kMKfp-HZqAA", // Dr. Myles Munroe – Purpose and Vision
+    video: "https://www.youtube.com/embed/4IFHbtsOlX0",
     title: "Purpose and Vision – Dr. Myles Munroe"
   }
 ];

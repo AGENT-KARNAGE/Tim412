@@ -50,6 +50,48 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
+.carousel-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1rem 0;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 1rem;
+}
+
+.carousel-card {
+  flex: 0 0 auto;
+  min-width: 300px;
+  height: 300px;
+  scroll-snap-align: start;
+  border-radius: 16px;
+  overflow: hidden;
+  background: white;
+  box-shadow: var(--box-shadow);
+}
+
+.carousel-card iframe {
+  width: 100%;
+  height: 250px;
+  border: none;
+  display: block;
+}
+
+.carousel-caption {
+  text-align: center;
+  margin-top: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
 .form-row {
   display: flex;
   gap: 20px;
@@ -124,10 +166,7 @@
   background-color: #1a5a44;
 }
 
-.carousel-wrapper {
-  /* overflow: hidden; */
-  width: 100%;
-}
+
 
 .carousel {
   display: flex;
@@ -135,16 +174,7 @@
   transition: transform 0.6s ease-in-out;
 }
 
-.carousel-wrapper {
-  overflow: hidden;
-}
 
-
-
-.carousel-wrapper {
-  overflow: hidden;
-  width: 100%;
-}
 
 .sec1Container.carousel {
   display: flex;
@@ -168,14 +198,6 @@
 }
 
 
-
-.carousel-wrapper {
-  overflow: hidden;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
 .sec1Container.carousel {
   display: flex;
   gap: 20px;
@@ -193,10 +215,6 @@
   margin: 0 auto;
 }
 
-.carousel-wrapper {
-  overflow: hidden;
-  margin-bottom: 30px;
-}
 
 .sec1Container.carousel {
   display: flex;
@@ -625,19 +643,17 @@
 
 /* Base carousel and form layout adjustments for mobile */
 @media (max-width: 768px) {
-  /* Form container layout */
-  .form-row {
+   .form-row {
     flex-direction: column;
     gap: 1.5rem;
-    margin: 1rem auto;
+    margin: 6rem auto 1rem; /* Add some top margin */
     width: 90%;
-   
   }
 
-  /* Individual form boxes */
   .ActivateForm {
     width: 100%;
     padding: 1rem;
+    margin-top: 1.5rem; /* ✅ Add this if it's the first item */
     box-sizing: border-box;
   }
 
@@ -656,37 +672,44 @@
     font-size: 1rem;
   }
 
-  /* Carousel container */
-  .carousel-wrapper {
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 1rem 0;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-  }
+  /* Carousel wrapper should not overflow */
+.carousel-wrapper {
+  overflow-x: auto;
+  /*overflow-y: hidden;*/
+  padding: 1rem 0;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100vw; /* ✅ prevent horizontal scroll */
+  box-sizing: border-box;
+}
 
-  .sec1Container.carousel {
-    display: flex;
-    flex-direction: row; /* Stay horizontal */
-    gap: 16px;
-    width: max-content;
-  }
+  /* Carousel container should not expand beyond screen */
+.sec1Container.carousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto; /* ✅ enables scrolling */
+  padding: 0 1rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  box-sizing: border-box;
+}
 
-  .Week {
-    flex: 0 0 85%;
-    max-width: 85%;
-    scroll-snap-align: start;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #ffffff;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-  }
+  /* Individual card should fit well on screen */
+.Week {
+  flex: 0 0 80%; /* ✅ slightly smaller than 100% */
+  max-width: 80%; /* ✅ consistent */
+  scroll-snap-align: start;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
 
   .DayImage {
     width: 100%;
     height: auto;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-radius: 8px 8px 0 0;
   }
 
   .DayText h2,
@@ -700,30 +723,21 @@
     text-align: center;
   }
 
- .events-wrapper-green {
-  width: 110vw;
-  min-height: 100vh;
-  background-color: #fff;
-  box-sizing: border-box;
-  margin-right: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* horizontal centering */
-  justify-content: center; /* vertical centering if needed */
-  padding: 1rem;
- }
+  /* Fix: remove 110vw to prevent horizontal overflow */
+  .events-wrapper-green {
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
 
- .Sec1 {
-  display: flex;
-  justify-content: center;  /* Centers horizontally */
-  align-items: center;      /* Centers vertically */
-  min-height: 100vh;
-  
+  .Sec1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
 }
 
-
-
-}
 
 
 

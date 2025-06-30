@@ -60,16 +60,27 @@ useEffect(() => {
     return () => clearTimeout(timeout);
   }
 }, [alertVisible]);
+   
 
-  // ✅ Load user from localStorage when component mounts
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    const storedToken = localStorage.getItem('token');
-    if (storedUser && storedToken) {
-      setUser(JSON.parse(storedUser));
-      setIsAuthenticated(true);
+  const storedUserStr = localStorage.getItem('user');
+  const storedToken = localStorage.getItem('token');
+
+  if (storedUserStr && storedToken) {
+    try {
+      const parsedUser = JSON.parse(storedUserStr);
+      if (parsedUser && parsedUser.email) {
+        setUser(parsedUser);
+        setIsAuthenticated(true);
+      }
+    } catch (error) {
+      console.error('Failed to parse stored user:', error);
     }
-  }, [setUser]);
+  }
+}, [setUser]);
+
+ 
+  
 
  // ✅ Handle Auth with Validation
   const handleAuth = async (e) => {

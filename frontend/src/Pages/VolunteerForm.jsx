@@ -1,41 +1,68 @@
-import React, { useState, useEffect } from 'react';
-import { db } from '../firebase-config';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import React, { useState } from 'react';
+// import { db } from '../firebase-config';
+// import { collection, addDoc } from 'firebase/firestore';
+import axios from 'axios';
 import './VolunteerForm.css';
 
-
 const VolunteerForm = () => {
-  const [name, setName] = useState('');
-  const [interest, setInterest] = useState('');
-  const [volunteers, setVolunteers] = useState([]);
+  const [formData, setFormData] = useState({ name: '', interest: '' });
+  const [successMsg, setSuccessMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name || !interest) return;
-    await addDoc(collection(db, 'volunteers'), { name, interest, created: new Date() });
-    setName('');
-    setInterest('');
-    fetchVolunteers();
-  };
+    setSuccessMsg('');
+    setErrorMsg('');
+    if (!formData.name || !formData.interest) {
+      setErrorMsg('Please fill in all fields.');
+      return;
+    }
 
-  const fetchVolunteers = async () => {
-    const snapshot = await getDocs(collection(db, 'volunteers'));
-    const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    setVolunteers(data);
-  };
+    try {
+      await axios.post('http://localhost:5110/api/testimonies-volunteers', {
+        name: formData.name,
+        email: 'volunteer@placeholder.com', // you can change this or remove it later
+        testimony: formData.interest,
+        type: 'volunteer'
+      });
 
-  useEffect(() => {
-    fetchVolunteers();
-  }, []);
+      setFormData({ name: '', interest: '' });
+      setSuccessMsg('Thank you for signing up to volunteer!');
+    } catch (err) {
+      setErrorMsg('Something went wrong. Please try again.');
+    }
+  };
 
   return (
     <div className="volunteer-form">
-      <h2>Volunteer Sign-Up</h2>
+      <h2>🙋 Volunteer Sign-Up</h2>
       <form onSubmit={handleSubmit}>
-        <input value={name} onChange={e => setName(e.target.value)} placeholder="Your name" />
-        <input value={interest} onChange={e => setInterest(e.target.value)} placeholder="Area you'd like to serve" />
+        <input
+          className="styled-input"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="Your name"
+          required
+        />
+        <input
+          className="styled-input"
+          name="interest"
+          value={formData.interest}
+          onChange={handleChange}
+          placeholder="Area you'd like to serve"
+          required
+        />
         <button type="submit">Sign Up</button>
       </form>
+
+      {successMsg && <p className="success-message">{successMsg}</p>}
+      {errorMsg && <p className="error-message">{errorMsg}</p>}
     </div>
   );
 };

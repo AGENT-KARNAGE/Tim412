@@ -46,12 +46,28 @@ function App() {
   }, [darkMode]);
 
 
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+  //     setUser(currentUser);
+  //   });
+  //   return () => unsubscribe();
+  // }, []);
+
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-    return () => unsubscribe();
-  }, []);
+  const storedUser = localStorage.getItem('user');
+  const storedToken = localStorage.getItem('token');
+  if (storedUser && storedToken) {
+    try {
+      const parsedUser = JSON.parse(storedUser);
+      setUser(parsedUser);
+    } catch (err) {
+      console.error("Error parsing user from localStorage:", err);
+    }
+  }
+}, []);
+
+   console.log(user ? user : "no user yet")
 
   return (
     <div className={darkMode ? 'app dark' : 'app light'}>
@@ -69,7 +85,7 @@ function App() {
         />
 
         <Header />
-        <Auth setUser={setUser} />
+        {!user && <Auth setUser={setUser} />}
 
          <div className="route-wrapper fade">
           <Routes>
