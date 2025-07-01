@@ -5,7 +5,8 @@ require("dotenv").config();
 
 const authRoutes = require("./routes/authRoutes");
 const registrationRoutes = require("./routes/registrationRoutes");
-import testimonyVoluntaryRoutes from './routes/testimonyVoluntaryRoutes.js';
+const testimonyVoluntaryRoutes =  require('./routes/testimonyVoluntaryRoutes.js');
+const prayerRequestRoutes = require('./routes/prayerRequests.js');
 
 const app = express()
 
@@ -20,6 +21,7 @@ const PORT = process.env.PORT || 5110;
 app.use("/api/auth", authRoutes);
 app.use("/api/registration", registrationRoutes);
 app.use('/api/testimonies-volunteers', testimonyVoluntaryRoutes);
+app.use('/api/prayerRequests', prayerRequestRoutes);
 
 
 // DB Connection

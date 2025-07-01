@@ -5,7 +5,7 @@ import './TestimonyCorner.css';
 import axios from 'axios';
 
 const TestimonyCorner = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', testimony: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', testimony: '' });
   const [successMsg, setSuccessMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -29,7 +29,7 @@ const TestimonyCorner = () => {
         type: 'testimony'
       });
 
-      setFormData({ name: '', email: '', testimony: '' });
+      setFormData({ name: '', email: '', phone: '', testimony: '' });
       setSuccessMsg('Thank you for sharing your testimony!');
     } catch (err) {
       console.error("❌ Error submitting testimony:", err.message);
@@ -39,7 +39,7 @@ const TestimonyCorner = () => {
 
   return (
     <div className="testimony-corner">
-      <h2>🎉 Testimony Corner</h2>
+      <h2><i className="fas fa-comment-dots"></i> Testimony Corner</h2>
       <form onSubmit={handleSubmit}>
         <input
           name="name"
@@ -54,6 +54,14 @@ const TestimonyCorner = () => {
           value={formData.email}
           onChange={handleChange}
           placeholder="Your Email"
+          required
+        />
+        <input
+          name="phone"
+          type="tel"
+          value={formData.phone}
+          onChange={handleChange}
+          placeholder="Your Phone Number"
           required
         />
         <textarea

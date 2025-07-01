@@ -41,7 +41,7 @@ const PrayerWall = ({ user }) => {
 
   return (
     <div className="prayer-wall">
-      <h2>🙏 Prayer Wall</h2>
+ <h2><i className="fas fa-praying-hands"></i> Prayer Wall</h2>
       <form onSubmit={handleSubmit}>
         <textarea
           value={message}

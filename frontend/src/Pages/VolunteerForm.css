@@ -20,11 +20,13 @@
   gap: 12px;
 }
 
-.volunteer-form input {
+.volunteer-form input,
+.volunteer-form select {
   padding: 12px;
-  border: 1px solid #ccc;
   border-radius: 8px;
+  border: 1px solid #ccc;
   font-size: 1rem;
+  outline: 0;
 }
 .styled-input {
   padding: 12px;

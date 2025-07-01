@@ -1,9 +1,21 @@
-import TestimonyVoluntary from '../models/TestimonyVoluntary.js';
+const TestimonyVoluntary = require('../models/TestimonyVoluntary.js');
 
 export const createEntry = async (req, res) => {
   try {
-    const { name, email, testimony, type } = req.body;
-    const entry = await TestimonyVoluntary.create({ name, email, testimony, type });
+    const { name, email, phone, testimony, type } = req.body;
+
+    if (!name || !email || !phone || !testimony || !type) {
+      return res.status(400).json({ message: 'All fields are required.' });
+    }
+
+    const entry = await TestimonyVoluntary.create({
+      name,
+      email,
+      phone,
+      testimony,
+      type,
+    });
+
     res.status(201).json(entry);
   } catch (err) {
     res.status(500).json({ message: 'Error creating entry', error: err.message });
