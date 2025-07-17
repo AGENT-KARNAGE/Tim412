@@ -4,25 +4,20 @@ import './Events.css';
 import sundayImage from '../Assets/images/daniel-gutko-Op-UUTQLGtI-unsplash.jpg';
 import tuesdayImage from '../Assets/images/samantha-sophia-NaWKMlp3tVs-unsplash.jpg';
 import thursdayImage from '../Assets/images/nathan-mullet-pmiW630yDPE-unsplash.jpg';
+import CustomAlert from './CustomAlert';
+import Loading from './Loading';
 
 const Events = () => {
   const [activateForm, setActivateForm] = useState({
-    fullName: '',
-    age: '',
-    email: '',
-    phone: '',
-    address: ''
+    fullName: '', age: '', email: '', phone: '', address: ''
   });
-
   const [youngForm, setYoungForm] = useState({
-    fullName: '',
-    age: '',
-    email: '',
-    phone: '',
-    address: ''
+    fullName: '', age: '', email: '', phone: '', address: ''
   });
-
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [alertType, setAlertType] = useState('success');
 
   const handleChange = (e, formSetter) => {
     const { name, value } = e.target;
@@ -31,50 +26,44 @@ const Events = () => {
 
   const handleSubmit = async (e, formData, formSetter, programName) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.post('http://localhost:5110/api/registration', {
         ...formData,
         program: programName
       });
 
-      alert(`🎉 Thank you for registering for ${programName}`);
+      setAlertMessage(`✨ Thank you for registering for ${programName}`);
+      setAlertType('success');
       formSetter({ fullName: '', age: '', email: '', phone: '', address: '' });
-
     } catch (error) {
-      console.error('❌ Error submitting form:', error);
-      alert('Something went wrong. Please try again.');
+      console.error('Error submitting form:', error);
+      setAlertMessage('Something went wrong. Please try again.');
+      setAlertType('error');
+    } finally {
+      setLoading(false);
     }
   };
 
   const services = [
     {
-      day: 'SUNDAY',
-      image: sundayImage,
-      title: 'SUNDAY SERVICE',
+      day: 'SUNDAY', image: sundayImage, title: 'SUNDAY SERVICE',
       times: ['08:00 AM - 10:00 AM', '10:30 AM - 12:30 PM']
     },
     {
-      day: 'TUESDAY',
-      image: tuesdayImage,
-      title: 'DIGGING DEEP',
+      day: 'TUESDAY', image: tuesdayImage, title: 'DIGGING DEEP',
       times: ['06:00 PM - 7:30 PM']
     },
     {
-      day: 'THURSDAY',
-      image: thursdayImage,
-      title: 'PUSH',
+      day: 'THURSDAY', image: thursdayImage, title: 'PUSH',
       times: ['(Pray Until Something Happens)', '06:00 PM - 7:30 AM']
     },
     {
-      day: 'SATURDAY',
-      image: tuesdayImage,
-      title: 'BRUNCH WITH JESUS',
+      day: 'SATURDAY', image: tuesdayImage, title: 'BRUNCH WITH JESUS',
       times: ['10:00 AM - 12:00 PM']
     },
     {
-      day: 'FRIDAY',
-      image: thursdayImage,
-      title: 'ONLINE BIBLE STUDY',
+      day: 'FRIDAY', image: thursdayImage, title: 'ONLINE BIBLE STUDY',
       times: ['08:00 PM - 09:30 PM']
     }
   ];
@@ -96,6 +85,13 @@ const Events = () => {
 
   return (
     <section className="Sec1">
+      {loading && <Loading />}
+      <CustomAlert
+        message={alertMessage}
+        type={alertType}
+        onClose={() => setAlertMessage('')}
+      />
+
       <div className="events-wrapper-green">
         <div className="carousel-wrapper">
           <div className="sec1Container carousel">
@@ -115,7 +111,6 @@ const Events = () => {
         </div>
 
         <div className="form-row">
-          {/* Activate 1.0 Form */}
           <div className="ActivateForm">
             <h2>Register for Activate 1.0</h2>
             <form onSubmit={(e) => handleSubmit(e, activateForm, setActivateForm, 'Activate 1.0')}>
@@ -128,7 +123,6 @@ const Events = () => {
             </form>
           </div>
 
-          {/* Young & Winning Form */}
           <div className="ActivateForm">
             <h2>Register for Young & Winning</h2>
             <form onSubmit={(e) => handleSubmit(e, youngForm, setYoungForm, 'Young & Winning')}>

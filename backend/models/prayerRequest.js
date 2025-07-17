@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const prayerRequestSchema = new mongoose.Schema({
   message: { type: String, required: true },
@@ -7,4 +7,5 @@ const prayerRequestSchema = new mongoose.Schema({
 });
 
 const PrayerRequest = mongoose.model('PrayerRequest', prayerRequestSchema);
-export default PrayerRequest;
+
+module.exports = PrayerRequest;

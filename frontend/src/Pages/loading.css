@@ -1,0 +1,62 @@
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.loader span {
+  width: 20px;
+  height: 20px;
+  background-color: #137c54;
+  border-radius: 50%;
+  animation: pulse 0.8s ease-in-out infinite;
+  box-shadow: 0 0 10px #137c54, 0 0 20px #137c54;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.loader span:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.loader span:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+    box-shadow: 0 0 10px #137c54, 0 0 20px #137c54;
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 1;
+    box-shadow: 0 0 16px #20c288, 0 0 32px #20c288;
+  }
+}
+
+.loading-overlay p {
+  color: white;
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
+}
+.loading-overlay p span {
+  color: #20c288;
+  font-weight: bold;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+}

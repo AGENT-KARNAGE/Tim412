@@ -1,14 +1,16 @@
-import express from 'express';
-import {
+const express = require('express');
+const {
   createPrayerRequest,
   getAllPrayerRequests,
   deletePrayerRequest,
-} from '../controllers/prayerRequestController.js';
+  getPrayerRequestsByUser, // 👈 Import the new function
+} = require('../controllers/prayerRequestController');
 
 const router = express.Router();
 
 router.post('/', createPrayerRequest);
 router.get('/', getAllPrayerRequests);
+router.get('/user/:email', getPrayerRequestsByUser); // ✅ Add this line
 router.delete('/:id', deletePrayerRequest);
 
-export default router;
+module.exports = router;

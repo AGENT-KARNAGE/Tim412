@@ -3,16 +3,19 @@ import React, { useState } from 'react';
 // import { collection, addDoc } from 'firebase/firestore';
 import axios from 'axios';
 import './VolunteerForm.css';
+import Loading from './Loading';
+import CustomAlert from './CustomAlert';
 
 const VolunteerForm = () => {
-      const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        phone: '',
-        interest: ''
-      });
-  const [successMsg, setSuccessMsg] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    interest: ''
+  });
+  const [loading, setLoading] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [alertType, setAlertType] = useState('success');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,31 +24,45 @@ const VolunteerForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSuccessMsg('');
-    setErrorMsg('');
+    setAlertMessage('');
+
     if (!formData.name || !formData.interest) {
-      setErrorMsg('Please fill in all fields.');
+      setAlertMessage('Please fill in all fields.');
+      setAlertType('error');
       return;
     }
 
+    setLoading(true);
     try {
-        await axios.post('http://localhost:5110/api/testimonies-volunteers', {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          testimony: formData.interest,
-          type: 'volunteer'
-        });
+      await axios.post('http://localhost:5110/api/testimonies-volunteers', {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        testimony: formData.interest,
+        type: 'volunteer',
+        category: null
+      });
 
-      setFormData({ name: '', interest: '' });
-      setSuccessMsg('Thank you for signing up to volunteer!');
+      setFormData({ name: '', email: '', phone: '', interest: '' });
+      setAlertMessage('Thank you for signing up to volunteer!');
+      setAlertType('success');
     } catch (err) {
-      setErrorMsg('Something went wrong. Please try again.');
+      setAlertMessage('Something went wrong. Please try again.');
+      setAlertType('error');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="volunteer-form">
+      {loading && <Loading />}
+      <CustomAlert
+        message={alertMessage}
+        type={alertType}
+        onClose={() => setAlertMessage('')}
+      />
+
       <h2><i className="fas fa-hands-helping"></i> Volunteer Sign-Up</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -90,9 +107,6 @@ const VolunteerForm = () => {
         </select>
         <button type="submit">Sign Up</button>
       </form>
-
-      {successMsg && <p className="success-message">{successMsg}</p>}
-      {errorMsg && <p className="error-message">{errorMsg}</p>}
     </div>
   );
 };

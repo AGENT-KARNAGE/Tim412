@@ -5,8 +5,8 @@ require("dotenv").config();
 
 const authRoutes = require("./routes/authRoutes");
 const registrationRoutes = require("./routes/registrationRoutes");
-const testimonyVoluntaryRoutes =  require('./routes/testimonyVoluntaryRoutes.js');
-const prayerRequestRoutes = require('./routes/prayerRequests.js');
+const testimonyVoluntaryRoutes =  require('./routes/testimonyVoluntaryRoutes');
+const prayerRequestRoutes = require('./routes/prayerRequests');
 
 const app = express()
 
@@ -16,6 +16,17 @@ app.use(express.json())
 
 // Port
 const PORT = process.env.PORT || 5110;
+
+
+app.get("/welcome", (req,res)=>{
+  try {
+    console.log("welcome to TIM412");
+    return res.status(200).json({message:"hello you are welcome to TIM412 server what would you love to eat"})
+  } catch (error) {
+    console.log("error occured while saying welcome", error)
+    return res.status(500).json({message:"error occured while saying welcome"})
+  }
+})
 
 // Routes
 app.use("/api/auth", authRoutes);
@@ -30,13 +41,13 @@ async function connectDB() {
     const connection = await mongoose.connect(process.env.MONGO_URI);
     console.log("Connected successfully to MongoDB");
 
-    // Start the server
-    app.listen(PORT, () =>
-       console.log(`🚀 Server running on port ${PORT}`)
-    );
+
   } catch (error) {
     console.error("There was an error while connecting:", error);
   }
 }
-
+    // Start the server
+    app.listen(PORT, () =>
+       console.log(`🚀 Server running on port ${PORT}`)
+    );
 connectDB(); // ✅ Call the function

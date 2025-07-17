@@ -1,10 +1,13 @@
-import express from 'express';
-import { createEntry, getAllEntries, deleteEntry } from '../controllers/testimonyVoluntaryController.js';
-
+const express = require('express');
 const router = express.Router();
+const {
+  createEntry,
+  getAllEntries,
+  deleteEntry,
+} = require('../controllers/testimonyVoluntaryController');
 
 router.post('/', createEntry);
 router.get('/', getAllEntries);
 router.delete('/:id', deleteEntry);
 
-export default router;
+module.exports = router;

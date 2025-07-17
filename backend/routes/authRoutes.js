@@ -1,9 +1,19 @@
-const express = require("express");
-const router = express.Router(); // ✅ This creates the router
+const express = require('express');
+const {
+  register,
+  login,
+  allUsers,
+  delAllUsers,
+} = require('../controllers/authController');
 
-const functions = require("../controllers/authController");
+const router = express.Router();
 
-router.post("/register", functions.register);
-router.post("/login", functions.login);
+// Auth routes
+router.post('/register', register);
+router.post('/login', login);
 
-module.exports = router; // ✅ Export the router
+// Admin routes (optional)
+router.get('/users', allUsers);
+router.delete('/users', delAllUsers);
+
+module.exports = router;

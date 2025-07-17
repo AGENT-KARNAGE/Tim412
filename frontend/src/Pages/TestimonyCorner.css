@@ -27,11 +27,13 @@
 }
 
 .testimony-corner input,
+.testimony-corner select,
 .testimony-corner textarea {
   padding: 12px;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 1rem;
+  outline: 0;
 }
 
 .testimony-corner textarea {

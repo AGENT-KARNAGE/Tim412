@@ -1,8 +1,11 @@
+// src/components/Auth.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Auth.css';
+import CustomAlert from './CustomAlert';
+import Loading from './Loading';
 
-// 🔒 Firebase imports (still commented out for future use)
+// 🔒 Firebase imports (commented out for future use)
 // import { auth } from '../firebase-config';
 // import {
 //   createUserWithEmailAndPassword,
@@ -23,19 +26,17 @@ const Auth = ({ setUser }) => {
   const [education, setEducation] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [alertText, setAlertText] = useState('');
   const [alertVisible, setAlertVisible] = useState(false);
 
-   // ✅ Input Validation Function
   const validateForm = () => {
     const newErrors = {};
 
-    // Email
     if (!email) newErrors.email = 'Email is required';
     else if (!/^\S+@\S+\.\S+$/.test(email)) newErrors.email = 'Invalid email format';
 
-    // Password
     if (!password) newErrors.password = 'Password is required';
     else if (password.length < 6) newErrors.password = 'Password must be at least 6 characters';
 
@@ -50,55 +51,50 @@ const Auth = ({ setUser }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-
-useEffect(() => {
-  if (alertVisible) {
-    const timeout = setTimeout(() => {
-      setAlertVisible(false);
-    }, 41000);
-
-    return () => clearTimeout(timeout);
-  }
-}, [alertVisible]);
-   
+  useEffect(() => {
+    if (alertVisible) {
+      const timeout = setTimeout(() => {
+        setAlertVisible(false);
+      }, 8000);
+      return () => clearTimeout(timeout);
+    }
+  }, [alertVisible]);
 
   useEffect(() => {
-  const storedUserStr = localStorage.getItem('user');
-  const storedToken = localStorage.getItem('token');
+    const storedUserStr = localStorage.getItem('user');
+    const storedToken = localStorage.getItem('token');
 
-  if (storedUserStr && storedToken) {
-    try {
-      const parsedUser = JSON.parse(storedUserStr);
-      if (parsedUser && parsedUser.email) {
-        setUser(parsedUser);
-        setIsAuthenticated(true);
+    if (storedUserStr && storedToken) {
+      try {
+        const parsedUser = JSON.parse(storedUserStr);
+        if (parsedUser && parsedUser.email) {
+          setUser(parsedUser);
+          setIsAuthenticated(true);
+        }
+      } catch (error) {
+        console.error('Failed to parse stored user:', error);
       }
-    } catch (error) {
-      console.error('Failed to parse stored user:', error);
     }
-  }
-}, [setUser]);
+  }, [setUser]);
 
- 
-  
-
- // ✅ Handle Auth with Validation
   const handleAuth = async (e) => {
     e.preventDefault();
 
-   if (!validateForm()) {
-  setAlertText('Please fix the errors above.');
-  setAlertVisible(true);
-  return;
-}
+    if (!validateForm()) {
+      setAlertText('Please fix the error above');
+      setAlertVisible(true);
+      return;
+    }
 
-if (isRegistering && (age < 16 || age > 24)) {
-  setAlertText("Please visit our main church site instead: https://newsprings-raqf.vercel.app/");
-  setAlertVisible(true);
-  return;
-}
+    if (isRegistering && (age < 16 || age > 24)) {
+      setAlertText("Please visit our main church site instead: https://newsprings-raqf.vercel.app/");
+      setAlertVisible(true);
+      return;
+    }
 
     try {
+      setIsLoading(true);
+
       if (isRegistering) {
         const res = await axios.post('http://localhost:5110/api/auth/register', {
           firstname: firstName,
@@ -130,77 +126,79 @@ if (isRegistering && (age < 16 || age > 24)) {
         localStorage.setItem('token', res.data.token);
       }
     } catch (error) {
-      setAlertText(error.response?.data?.message || 'Something went wrong');
+      setAlertText(error.response?.data?.error || error.response?.data?.message || 'Something went wrong');
       setAlertVisible(true);
+    } finally {
+      setIsLoading(false);
     }
   };
-  // 🔒 Google login – still commented for future Firebase support
+
+  // 🔒 Google login – future use
   // const handleGoogleLogin = async () => {
   //   try {
-  //     const result = await signInWithPopup(auth, googleProvider);
+  //     const result = await signInWithPopup(auth, new GoogleAuthProvider());
   //     setUser(result.user);
   //     setIsAuthenticated(true);
   //   } catch (error) {
-  //     alert(error.message);
+  //     setAlertText(error.message);
+  //     setAlertVisible(true);
   //   }
   // };
 
-  // 🔒 Sign out – still commented
+  // 🔒 Firebase Sign Out – future use
   // const handleSignOut = async () => {
   //   await signOut(auth);
   //   setUser(null);
   //   setIsAuthenticated(false);
   // };
 
-  if (isAuthenticated) return null;
+  if (isAuthenticated && setUser) {
+  return (
+    <div className="user-info-container">
+      <h2>Welcome, {firstName || email.split('@')[0]}!</h2>
+      <p><strong>Full Name:</strong> {firstName} {lastName}</p>
+      <p><strong>Email:</strong> {email}</p>
+      <p><strong>Age:</strong> {age}</p>
+      <p><strong>Department:</strong> {department}</p>
+      <p><strong>Education:</strong> {education}</p>
+    </div>
+  );
+};
 
-   return (
+  return (
     <div className="auth-container">
-     {alertVisible && (
-  <div className="alert-box">
-    {
-      alertText.includes('http') ? (
-        <p>
-          Please visit our main site the youth church age range is from 16 - 24 and you are currently {age} :{" "}
-          <a href={alertText.match(/https?:\/\/\S+/)?.[0]} target="_blank" rel="noopener noreferrer">
-            {alertText.match(/https?:\/\/\S+/)?.[0]}
-          </a>
-        </p>
-      ) : (
-        <p>{alertText}</p>
-      )
-    }
-    <button onClick={() => setAlertVisible(false)}>OK</button>
-  </div>
-)}
+      {isLoading && <Loading />}
 
+      {alertVisible && (
+        <CustomAlert
+          message={
+            alertText.includes('http') ? (
+              <>
+                Please visit our main site. The youth church age range is from 16 - 24 and you are currently {age}:{" "}
+                <a href={alertText.match(/https?:\/\/\S+/)?.[0]} target="_blank" rel="noopener noreferrer">
+                  {alertText.match(/https?:\/\/\S+/)?.[0]}
+                </a>
+              </>
+            ) : (
+              alertText
+            )
+          }
+          type={alertText.toLowerCase().includes('success') ? 'success' : 'error'}
+          onClose={() => setAlertVisible(false)}
+        />
+      )}
 
       <h2>{isRegistering ? 'Register' : 'Login'}</h2>
       <form onSubmit={handleAuth} className="auth-form">
         {isRegistering && (
           <>
-            <input
-              type="text"
-              placeholder="First Name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
+            <input type="text" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
             {errors.firstName && <span className="error">{errors.firstName}</span>}
 
-            <input
-              type="text"
-              placeholder="Last Name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
+            <input type="text" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
             {errors.lastName && <span className="error">{errors.lastName}</span>}
 
-            <input
-              type="number"
-              placeholder="Age"
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
-            />
+            <input type="number" placeholder="Age" value={age} onChange={(e) => setAge(e.target.value)} />
             {errors.age && <span className="error">{errors.age}</span>}
 
             <select value={department} onChange={(e) => setDepartment(e.target.value)}>
@@ -210,30 +208,15 @@ if (isRegistering && (age < 16 || age > 24)) {
               <option value="music">Music</option>
             </select>
 
-            <input
-              type="text"
-              placeholder="Education Level"
-              value={education}
-              onChange={(e) => setEducation(e.target.value)}
-            />
+            <input type="text" placeholder="Education Level" value={education} onChange={(e) => setEducation(e.target.value)} />
             {errors.education && <span className="error">{errors.education}</span>}
           </>
         )}
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
         {errors.email && <span className="error">{errors.email}</span>}
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
         {errors.password && <span className="error">{errors.password}</span>}
 
         <button type="submit">{isRegistering ? 'Register' : 'Login'}</button>
@@ -254,11 +237,6 @@ if (isRegistering && (age < 16 || age > 24)) {
   );
 };
 
-const wrapper = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  minHeight: '120vh',
-};
+
 
 export default Auth;
