@@ -16,7 +16,7 @@ import Loading from './Loading';
 //   signInWithPopup,
 // } from 'firebase/auth';
 
-const Auth = ({ setUser }) => {
+const Auth = ({ user, setUser }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -96,7 +96,7 @@ const Auth = ({ setUser }) => {
       setIsLoading(true);
 
       if (isRegistering) {
-        const res = await axios.post('http://localhost:5110/api/auth/register', {
+        const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
           firstname: firstName,
           lastname: lastName,
           age,
@@ -152,15 +152,15 @@ const Auth = ({ setUser }) => {
   //   setIsAuthenticated(false);
   // };
 
-  if (isAuthenticated && setUser) {
+  if (user) {
   return (
     <div className="user-info-container">
-      <h2>Welcome, {firstName || email.split('@')[0]}!</h2>
-      <p><strong>Full Name:</strong> {firstName} {lastName}</p>
-      <p><strong>Email:</strong> {email}</p>
-      <p><strong>Age:</strong> {age}</p>
-      <p><strong>Department:</strong> {department}</p>
-      <p><strong>Education:</strong> {education}</p>
+      <h2>Welcome, {user.firstname || user.email.split('@')[0]}!</h2>
+      <p><strong>Full Name:</strong> {user.firstname} {user.lastname}</p>
+      <p><strong>Email:</strong> {user.email}</p>
+      <p><strong>Age:</strong> {user.age}</p>
+      <p><strong>Department:</strong> {user.department}</p>
+      <p><strong>Education:</strong> {user.education}</p>
     </div>
   );
 };

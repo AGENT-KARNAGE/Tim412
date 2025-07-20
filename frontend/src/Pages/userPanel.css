@@ -1,0 +1,105 @@
+.user-panel-wrapper {
+  position: fixed;
+  top: 50%;
+  left: 5%;
+  z-index: 9999;
+}
+
+.user-icon {
+  color: #137c54;
+  cursor: pointer;
+  background: white;
+  border-radius: 50%;
+  width: 40px;
+  aspect-ratio:16/9;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+  filter: drop-shadow(0 0 2px #137c54);
+  animation: subtlePulse 2s infinite;
+}
+
+.user-icon:hover {
+  transform: scale(1.2) rotate(5deg);
+  color: #00ffcc;
+  box-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc, 0 0 60px #00ffcc;
+  filter: drop-shadow(0 0 6px #00ffcc);
+}
+
+.user-panel {
+  position: relative;
+  top: 45px;
+  right: 0;
+  width: 280px;
+  padding: 20px;
+  background: #fff;
+  border: 2px solid #137c54;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  font-family: 'Segoe UI', sans-serif;
+  color: #222;
+  backdrop-filter: blur(4px);
+  animation: fadeInUp 0.4s ease forwards;
+  text-align: left;
+}
+
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-icon:hover {
+  color: red;
+}
+
+.user-details p {
+  margin: 10px 0;
+  font-size: 15px;
+}
+
+.logout-button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 10px;
+  border: none;
+  background: linear-gradient(135deg, #137c54, #0a3c29);
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.4s ease;
+}
+
+.logout-button:hover {
+  background: linear-gradient(135deg, #0a3c29, #137c54);
+  transform: scale(1.03);
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+/* Pulse animation */
+@keyframes subtlePulse {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 2px #137c54);
+  }
+  50% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 6px #00ffcc);
+  }
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 2px #137c54);
+  }
+}

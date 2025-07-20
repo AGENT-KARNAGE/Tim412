@@ -185,40 +185,57 @@ const handleSubmit = async (e) => {
         </select>
       </div>
 
-      {/* Display testimonies */}
-      <div style={{ marginTop: '30px' }}>
-        <h3 style={{ color: '#137c54' }}>
-          <i className="fas fa-bible"></i> Recent Testimonies
-        </h3>
-        {filteredTestimonies.length === 0 ? (
-          <p>No testimonies match your search.</p>
-        ) : (
-          filteredTestimonies.map((entry) => (
-            <div
-              key={entry._id}
-              style={{
-                backgroundColor: '#eef8f3',
-                borderRadius: '10px',
-                padding: '15px',
-                marginBottom: '15px',
-                animation: 'fadeIn 0.4s ease-in-out',
-              }}
-            >
-              <h4 style={{ marginBottom: '5px', color: '#137c54' }}>
-                <i className="fas fa-user"></i> {entry.name}{' '}
-                <small style={{ fontWeight: 'normal' }}>({entry.category})</small>
-              </h4>
-              <p>{entry.testimony}</p>
-              <small style={{ color: '#555' }}>
-                <i className="fas fa-envelope"></i> {entry.email} |{' '}
-                <i className="fas fa-phone"></i> {entry.phone} |{' '}
-                <i className="fas fa-calendar-alt"></i>{' '}
-                {new Date(entry.createdAt).toLocaleDateString()}
-              </small>
-            </div>
-          ))
-        )}
-      </div>
+{/* Display testimonies */}
+<div style={{ marginTop: '30px' }}>
+  <h3 style={{ color: '#137c54' }}>
+    <i className="fas fa-bible"></i> Recent Testimonies
+  </h3>
+
+  {filteredTestimonies.length === 0 ? (
+    <p>No testimonies match your search.</p>
+  ) : (
+    <div
+      style={{
+        maxHeight: '200px',         // Limit the height
+        overflowY: 'auto',          // Add vertical scroll if needed
+        paddingRight: '10px',       // Space for scrollbar
+        marginTop: '10px',
+      }}
+    >
+      {filteredTestimonies.map((entry) => (
+        <div
+          key={entry._id}
+          style={{
+            backgroundColor: '#eef8f3',
+            borderRadius: '10px',
+            padding: '15px',
+            marginBottom: '15px',
+            animation: 'fadeIn 0.4s ease-in-out',
+          }}
+        >
+          <h4 style={{ marginBottom: '5px', color: '#137c54' }}>
+            <i className="fas fa-user"></i> {entry.name}{' '}
+            <small style={{ fontWeight: 'normal' }}>({entry.category})</small>
+          </h4>
+          <p>{entry.testimony}</p>
+          <small style={{ color: '#555' }}>
+<div>
+  <a href={`mailto:${entry.email}`}>
+    <i className="fas fa-envelope"></i> {entry.email}
+  </a>
+  &nbsp;|&nbsp;
+  <a href={`tel:${entry.phone}`}>
+    <i className="fas fa-phone"></i> {entry.phone}
+  </a>
+</div>
+            <i className="fas fa-calendar-alt"></i>{' '}
+            {new Date(entry.createdAt).toLocaleDateString()}
+          </small>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
     </div>
   );
 };

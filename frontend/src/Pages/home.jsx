@@ -67,8 +67,10 @@ function App() {
   }
 }, []);
 
-   console.log(user ? user : "no user yet")
-
+   useEffect(() => {
+  console.log(user ? user : "no user yet");
+}, [user]);
+  //rsh723fh
   return (
     <div className={darkMode ? 'app dark' : 'app light'}>
       <Router>
@@ -82,10 +84,12 @@ function App() {
           darkMode={darkMode}
           setDarkMode={setDarkMode}
           setSidebarOpen={setSidebarOpen}
+          user={user}
+          setUser={setUser}
         />
 
         <Header />
-        {!user && <Auth setUser={setUser} />}
+        {!user && <Auth  user={user} setUser={setUser} />}
 
          <div className="route-wrapper fade">
           <Routes>

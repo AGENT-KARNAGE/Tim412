@@ -20,12 +20,13 @@ const createEntry = async (req, res) => {
         email,
         type: "volunteer" // Make sure it's a volunteer entry
       })
-    }
-
-    if(existing){
+      if(existing){
       console.log("🚫 Duplicate volunteer entry detected");
       return res.status(409).json({ message: 'You have already volunteered. Thank you!' });
     }
+    }
+
+    
 
     const entry = await TestimonyVoluntary.create({
       name,

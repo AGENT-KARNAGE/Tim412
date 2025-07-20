@@ -71,7 +71,12 @@
 .testimony-corner .error-message {
   color: red;
 }
-
+.testimony-corner a{
+    color: #137c54;
+}
+.testimony-corner a:hover {
+  color: #0f5f40;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;

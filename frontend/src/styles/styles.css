@@ -1,8 +1,27 @@
 *{
     padding: 0;
+    text-decoration: none;
     margin: 0;
+
 }
 
+/*log out button*/
+.logout-button {
+  background-color: white; /* your primary color */
+  color: #137c54;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logout-button:hover {
+  color:white;
+  background-color: #0f6344; /* slightly darker on hover */
+}
 #NAV {
   display: flex;
   justify-content: space-between;
@@ -889,7 +908,9 @@ body {
   .vision-mission-container {
     flex-direction: column;
   }
-
+  html{
+  font-size: 90%;
+  }
   .footer-content {
     flex-direction: column;
     align-items: center;

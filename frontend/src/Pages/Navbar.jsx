@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import UserPanel from './UserPanel';
 import '../styles/styles.css';
 import logo from '../Assets/images/download.png';
 
-const Navbar = ({ darkMode, setDarkMode, setSidebarOpen }) => (
+const Navbar = ({ darkMode, setDarkMode, setSidebarOpen, user, setUser }) => (
   <nav id="NAV">
     <div className="LOGO">
       <img className="img1" src={logo} alt="RCCG LOGO" />
@@ -26,6 +27,9 @@ const Navbar = ({ darkMode, setDarkMode, setSidebarOpen }) => (
     <button className="sidebar-toggle mobile-only" onClick={() => setSidebarOpen(true)}>
       ☰
     </button>
+
+          {user && (
+          <UserPanel user={user} setUser={setUser} />)}
   </nav>
 );
 
