@@ -1,47 +1,56 @@
-import React from "react";
-import "./thisweek.css"; // Keep your styling
+import React, { useEffect, useRef, useState } from "react";
+import "./thisweek.css";
 
-// Replace local videos with YouTube embed URLs
-const sermons = [
-  {
-    video: "https://www.youtube.com/embed/lR1Hk0FVi_k",
-    title: "God of Miracles – Pastor E.A. Adeboye"
-  },
-  {
-    video: "https://www.youtube.com/embed/rLWseubRH8Y",
-    title: "The Power of Prayer – Apostle Joshua Selman"
-  },
-  {
-    video: "https://www.youtube.com/embed/M8qJr2qERso",
-    title: "Finishing Strong – Pastor Paul Enenche"
-  },
-  {
-    video: "https://www.youtube.com/embed/X2CCMQnQHAM",
-    title: "Understanding Faith – Bishop David Oyedepo"
-  },
-  {
-    video: "https://www.youtube.com/embed/M8qJr2qERso?start=41",
-    title: "Purity and Power – Apostle Michael Orokpo"
-  },
-  {
-    video: "https://www.youtube.com/embed/g5Rel7_VFfM",
-    title: "The Word & Your Destiny – Pastor Mensa Otabil"
-  },
-  {
-    video: "https://www.youtube.com/embed/4IFHbtsOlX0",
-    title: "Purpose and Vision – Dr. Myles Munroe"
-  }
-];
-
+const sermons = [/* ...your data */];
 
 const SermonSection = () => {
+  const cardRefs = useRef([]);
+  const [visibleCards, setVisibleCards] = useState([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const index = Number(entry.target.dataset.index);
+          if (entry.isIntersecting) {
+            setVisibleCards((prev) => [...new Set([...prev, index])]);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    const currentRefs = [...cardRefs.current]; // ✅ snapshot for cleanup
+    currentRefs.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      currentRefs.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, []); // ✅ no stale ref warnings now
+
   return (
     <section className="this-week-section">
       <h2>Sermons</h2>
       <div className="carousel-wrapper">
         <div className="carousel-track">
           {[...sermons, ...sermons].map(({ video, title }, index) => (
-            <div className="carousel-card" key={index}>
+            <div
+              key={index}
+              data-index={index}
+              ref={(el) => (cardRefs.current[index] = el)}
+              className="carousel-card"
+              style={{
+                opacity: visibleCards.includes(index) ? 1 : 0,
+                transform: visibleCards.includes(index)
+                  ? "translateY(0)"
+                  : "translateY(50px)",
+                transition: "opacity 0.6s ease, transform 0.6s ease"
+              }}
+            >
               <iframe
                 width="100%"
                 height="250"

@@ -27,7 +27,7 @@ function UserPanel({ user, setUser }) {
             <FaTimes 
             title="Close"
             className="close-icon"
-            onclick={()=>setIsOpen(!isOpen)} /> 
+            onClick={()=>setIsOpen(!isOpen)} /> 
           <p><strong>Name:</strong> {user.firstname} {user.lastname}</p>
           <p><strong>Email:</strong> {user.email}</p>
           <p><strong>Age:</strong> {user.age}</p>

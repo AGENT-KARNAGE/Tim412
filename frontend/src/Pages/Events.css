@@ -8,6 +8,17 @@
   text-align: center;
 }
 
+.youth-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-out;
+}
+
+.youth-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .ActivateForm h2 {
   color: #137c54;
   margin-bottom: 20px;

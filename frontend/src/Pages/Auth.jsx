@@ -30,7 +30,7 @@ const Auth = ({ user, setUser }) => {
   const [errors, setErrors] = useState({});
   const [alertText, setAlertText] = useState('');
   const [alertVisible, setAlertVisible] = useState(false);
-
+  const server = "http://localhost:5110"
   const validateForm = () => {
     const newErrors = {};
 
@@ -96,7 +96,7 @@ const Auth = ({ user, setUser }) => {
       setIsLoading(true);
 
       if (isRegistering) {
-        const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
+        const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, {
           firstname: firstName,
           lastname: lastName,
           age,
@@ -113,7 +113,7 @@ const Auth = ({ user, setUser }) => {
         localStorage.setItem('user', JSON.stringify(res.data.user));
         localStorage.setItem('token', res.data.token);
       } else {
-        const res = await axios.post('http://localhost:5110/api/auth/login', {
+        const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, {
           email,
           password,
         });

@@ -70,6 +70,8 @@ function App() {
    useEffect(() => {
   console.log(user ? user : "no user yet");
 }, [user]);
+
+    const formatName = (name)=> `${name.slice(0,1).toUpperCase()}${name.slice(1).toLowerCase()}`;
   //rsh723fh
   return (
     <div className={darkMode ? 'app dark' : 'app light'}>
@@ -88,7 +90,7 @@ function App() {
           setUser={setUser}
         />
 
-        <Header />
+        <Header username={user ? formatName(user.firstname) : "DEAR"} />
         {!user && <Auth  user={user} setUser={setUser} />}
 
          <div className="route-wrapper fade">

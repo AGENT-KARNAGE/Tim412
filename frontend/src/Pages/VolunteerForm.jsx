@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 // import { db } from '../firebase-config';
 // import { collection, addDoc } from 'firebase/firestore';
 import axios from 'axios';
@@ -16,6 +16,26 @@ const VolunteerForm = () => {
   const [loading, setLoading] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
   const [alertType, setAlertType] = useState('success');
+  const [visible, setVisible] = useState(false);
+  const formRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (formRef.current) {
+      observer.observe(formRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,7 +54,7 @@ const VolunteerForm = () => {
 
     setLoading(true);
     try {
-      await axios.post('http://localhost:5110/api/testimonies-volunteers', {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/testimonies-volunteers`, {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
@@ -47,15 +67,25 @@ const VolunteerForm = () => {
       setAlertMessage('Thank you for signing up to volunteer!');
       setAlertType('success');
     } catch (err) {
+      console.log("we have an error", err)
       setAlertMessage('Something went wrong. Please try again.');
       setAlertType('error');
     } finally {
       setLoading(false);
     }
   };
+  console.log("process.env.REACT_APP_API_URL", process.env.REACT_APP_API_URL);
 
   return (
-    <div className="volunteer-form">
+    <div
+      className="volunteer-form"
+      ref={formRef}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0)' : 'translateY(40px)',
+        transition: 'opacity 0.8s ease-out, transform 0.8s ease-out'
+      }}
+    >
       {loading && <Loading />}
       <CustomAlert
         message={alertMessage}

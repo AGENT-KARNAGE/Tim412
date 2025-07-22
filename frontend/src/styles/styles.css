@@ -2,6 +2,7 @@
     padding: 0;
     text-decoration: none;
     margin: 0;
+    
 
 }
 
@@ -26,19 +27,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 10px;
+  padding: 5px 1px;
   background-color: #137c54;
   color: white;
-  position: relative;
+  position: fixed;
+  top:0rem;
+  left: 0rem;
   z-index: 1000;
-   width: 1225PX;
+  width: 100%;
   height: 50px;
-  margin: 0 auto
-
 }
 
 .LOGO img {
   height: 50px;
+  margin-left: 1rem;
 }
 .img1{
     /* border: 2px solid black; */
@@ -50,6 +52,7 @@
   display: flex;
   gap: 20px;
   align-items: center;
+  padding-right: 1rem;
 }
 
 .Content {
@@ -131,7 +134,11 @@
     /* font-size: 2em; */
     color: white;
 }
-
+h1 span {
+  color: #00b894; /* A calm green tone */
+  font-weight: bold;
+  text-transform: uppercase;
+}
 .phrase{
    color:  rgb(57, 185, 85);
 }
@@ -801,12 +808,12 @@ body {
 
 .footer-section .icons a {
   font-size: 1.5rem;
-  color: #137c54;
+  color: rgb(255, 255, 255);
   transition: color 0.3s;
 }
 
 .footer-section .icons a:hover {
-  color: #0f5f40;
+  color: #c3e4d7;
 }
 
 .footer-section.newsletter form {
@@ -881,7 +888,6 @@ body {
 .footer-section .address-link {
   display: inline-block;
   color: #137c54;
-  text-decoration: underline;
   margin-left: 4px;
 }
 
@@ -949,6 +955,66 @@ body {
 }
 
 
+@media (max-width: 768px) {
+  .Sec4 {
+    width: 95%;
+    height: auto;
+    padding: 20px 10px;
+  }
+
+  .Sermons {
+    font-size: 1.5em;
+    padding-block: 20px;
+  }
+
+  .SermonContainer {
+    width: 100%;
+    gap: 20px;
+  }
+
+  .Vid {
+    width: 90%;
+    height: auto;
+  }
+
+  .Name {
+    font-size: 1.2em;
+    padding: 10px 5px;
+  }
+
+  .Sec1 {
+    padding: 20px;
+  }
+
+  .Sec2 {
+    padding: 20px 10px;
+  }
+
+  .EmptyDecor {
+    width: 90%;
+    height: auto;
+    font-size: 1.5em;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  .Timothy {
+    font-size: 2em;
+  }
+
+  .Week {
+    height: auto;
+  }
+
+  .Day {
+    height: 200px;
+  }
+
+  .Events {
+    height: auto;
+    padding: 10px 0;
+  }
+}
 
 
 

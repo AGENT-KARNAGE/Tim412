@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-// import { db } from '../firebase-config';
-// import { collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp } from 'firebase/firestore';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './PrayerWall.css';
 import Loading from './Loading';
@@ -12,7 +10,12 @@ const PrayerWall = ({ user }) => {
   const [alertMessage, setAlertMessage] = useState('');
   const [alertType, setAlertType] = useState('success');
   const [whenLastSubmitted, setWhenLastSubmitted] = useState(localStorage.getItem("whenLastSubmitted") || false);
+
   const today = new Date().toLocaleDateString();
+
+  const formRef = useRef();
+  const [formVisible, setFormVisible] = useState(false);
+
   const checkUserSubmission = async () => {
     try {
       if (whenLastSubmitted === today) {
@@ -36,15 +39,7 @@ const PrayerWall = ({ user }) => {
 
     setLoading(true);
     try {
-      // 🔽 Firebase version (commented out)
-      // await addDoc(collection(db, 'prayerWall'), {
-      //   message,
-      //   created: serverTimestamp(),
-      //   user: user?.email || 'Anonymous',
-      // });
-
-      // ✅ Custom backend version
-      await axios.post('http://localhost:5110/api/prayerRequests', {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/prayerRequests`, {
         message,
         user: user?.email || 'Anonymous',
       });
@@ -63,18 +58,34 @@ const PrayerWall = ({ user }) => {
     }
   };
 
-  useEffect(() => {
-    checkUserSubmission();
-  }, [user]);
-
   const handleTyping = (e) => {
     if (whenLastSubmitted === today) {
       setAlertMessage('You have already submitted a prayer request today. Please wait until tomorrow.');
       setAlertType('error');
-      return //stop typing
+      return;
     }
     setMessage(e.target.value);
   };
+
+  useEffect(() => {
+    checkUserSubmission();
+  }, [user]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setFormVisible(entry.isIntersecting);
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (formRef.current) observer.observe(formRef.current);
+    return () => {
+      if (formRef.current) observer.unobserve(formRef.current);
+    };
+  }, []);
 
   return (
     <div className="prayer-wall">
@@ -86,7 +97,16 @@ const PrayerWall = ({ user }) => {
       />
 
       <h2><i className="fas fa-praying-hands"></i> Prayer Wall</h2>
-      <form onSubmit={handleSubmit}>
+
+      <form
+        ref={formRef}
+        onSubmit={handleSubmit}
+        style={{
+          opacity: formVisible ? 1 : 0,
+          transform: formVisible ? 'translateY(0px)' : 'translateY(40px)',
+          transition: 'opacity 0.6s ease, transform 0.6s ease'
+        }}
+      >
         <textarea
           value={message}
           onChange={handleTyping}

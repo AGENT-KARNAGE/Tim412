@@ -4,27 +4,44 @@ const Registration = require("../models/registration");
 exports.register = async (req, res) => {
   const { fullName, age, email, phone, address, program } = req.body;
 
+  // Validate the program name
   if (!["Activate 1.0", "Young & Winning"].includes(program)) {
     console.warn("❗ Invalid program name received:", program);
     return res.status(400).json({ error: "Invalid program name" });
   }
 
   try {
+    // Check for existing user
+    const existingUser = await Registration.findOne({ fullName, email });
+
+    if (existingUser) {
+      console.log("⚠️ Duplicate registration attempt:", fullName, email);
+      return res.status(400).json({
+        message: "This name and email have already been used. It seems you’ve already registered.",
+        success: false,
+      });
+    }
+
+    // Create new registration
     const registration = new Registration({
       fullName,
       age,
       email,
       phone,
       address,
-      program
+      program,
     });
 
     await registration.save();
     console.log(`✅ Successfully registered for ${program}:`, fullName);
-    res.status(201).json({ message: `Registration for ${program} successful!` });
+
+    res.status(201).json({
+      message: `Registration for ${program} successful!`,
+      success: true,
+    });
   } catch (error) {
     console.error("❌ Registration error:", error);
-    res.status(500).json({ error: "Something went wrong" });
+    res.status(500).json({ message: "Something went wrong. Please try again later." });
   }
 };
 

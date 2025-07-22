@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './Events.css';
 import sundayImage from '../Assets/images/daniel-gutko-Op-UUTQLGtI-unsplash.jpg';
@@ -19,31 +19,70 @@ const Events = () => {
   const [alertMessage, setAlertMessage] = useState('');
   const [alertType, setAlertType] = useState('success');
 
+  const formRefs = useRef([]);
+  const [visibleForms, setVisibleForms] = useState([]);
+
   const handleChange = (e, formSetter) => {
     const { name, value } = e.target;
     formSetter(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e, formData, formSetter, programName) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const response = await axios.post('http://localhost:5110/api/registration', {
-        ...formData,
-        program: programName
-      });
+const handleSubmit = async (e, formData, formSetter, programName) => {
+  e.preventDefault();
 
-      setAlertMessage(`✨ Thank you for registering for ${programName}`);
-      setAlertType('success');
-      formSetter({ fullName: '', age: '', email: '', phone: '', address: '' });
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setAlertMessage('Something went wrong. Please try again.');
-      setAlertType('error');
-    } finally {
-      setLoading(false);
-    }
-  };
+  // Validation
+  const errors = [];
+
+  // Full Name: Must include at least 2 words
+  if (!formData.fullName.trim().includes(' ')) {
+    errors.push('Please enter both your first name and surname.');
+  }
+
+  // Age: Must be between 16 and 24
+  const age = Number(formData.age);
+  if (!age || age < 16 || age > 24) {
+    errors.push('Age must be between 16 and 24.');
+  }
+
+  // Email: Simple regex check
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(formData.email)) {
+    errors.push('Please enter a valid email address.');
+  }
+
+  // Phone: Must be 10-15 digits
+  const phoneRegex = /^[0-9]{10,15}$/;
+  if (!phoneRegex.test(formData.phone)) {
+    errors.push('Phone number must contain only numbers (10 to 15 digits).');
+  }
+
+  if (errors.length > 0) {
+    setAlertMessage(errors.join(' '));
+    setAlertType('error');
+    return;
+  }
+
+  // Proceed if no errors
+  setLoading(true);
+  try {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/registration`, {
+      ...formData,
+      program: programName
+    });
+
+    setAlertMessage(response?.data?.message || `✨ Thank you for registering for ${programName}`);
+    setAlertType('success');
+    formSetter({ fullName: '', age: '', email: '', phone: '', address: '' });
+  } catch (error) {
+    console.error('Error submitting form:', error);
+    const errorMessage = error.response?.data?.message || error.response?.data?.error || 'Something went wrong. Please try again.';
+    setAlertMessage(errorMessage);
+    setAlertType('error');
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   const services = [
     {
@@ -74,6 +113,30 @@ const Events = () => {
     }, 2500);
     return () => clearInterval(interval);
   }, [services.length]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          const index = Number(entry.target.dataset.index);
+          if (entry.isIntersecting) {
+            setVisibleForms(prev => [...new Set([...prev, index])]);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    formRefs.current.forEach(ref => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      formRefs.current.forEach(ref => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, []);
 
   const getVisibleServices = () => {
     const visible = [];
@@ -111,26 +174,70 @@ const Events = () => {
         </div>
 
         <div className="form-row">
-          <div className="ActivateForm">
+          <div
+            className="ActivateForm"
+            data-index={0}
+            ref={el => (formRefs.current[0] = el)}
+            style={{
+              opacity: visibleForms.includes(0) ? 1 : 0,
+              transform: visibleForms.includes(0) ? 'translateY(0)' : 'translateY(30px)',
+              transition: 'all 0.6s ease',
+            }}
+          >
             <h2>Register for Activate 1.0</h2>
             <form onSubmit={(e) => handleSubmit(e, activateForm, setActivateForm, 'Activate 1.0')}>
-              <input name="fullName" placeholder="Full Name" value={activateForm.fullName} onChange={(e) => handleChange(e, setActivateForm)} required />
-              <input name="age" type="number" placeholder="Age" value={activateForm.age} onChange={(e) => handleChange(e, setActivateForm)} required />
-              <input name="email" type="email" placeholder="Email" value={activateForm.email} onChange={(e) => handleChange(e, setActivateForm)} required />
-              <input name="phone" placeholder="Phone" value={activateForm.phone} onChange={(e) => handleChange(e, setActivateForm)} required />
-              <textarea name="address" placeholder="Address" value={activateForm.address} onChange={(e) => handleChange(e, setActivateForm)} required />
+              {['fullName', 'age', 'email', 'phone'].map((name) => (
+                <input
+                  key={name}
+                  name={name}
+                  type={name === 'age' ? 'number' : name === 'email' ? 'email' : 'text'}
+                  placeholder={name[0].toUpperCase() + name.slice(1)}
+                  value={activateForm[name]}
+                  onChange={(e) => handleChange(e, setActivateForm)}
+                  required
+                />
+              ))}
+              <textarea
+                name="address"
+                placeholder="Address"
+                value={activateForm.address}
+                onChange={(e) => handleChange(e, setActivateForm)}
+                required
+              />
               <button type="submit">Submit</button>
             </form>
           </div>
 
-          <div className="ActivateForm">
+          <div
+            className="ActivateForm"
+            data-index={1}
+            ref={el => (formRefs.current[1] = el)}
+            style={{
+              opacity: visibleForms.includes(1) ? 1 : 0,
+              transform: visibleForms.includes(1) ? 'translateY(0)' : 'translateY(30px)',
+              transition: 'all 0.6s ease',
+            }}
+          >
             <h2>Register for Young & Winning</h2>
             <form onSubmit={(e) => handleSubmit(e, youngForm, setYoungForm, 'Young & Winning')}>
-              <input name="fullName" placeholder="Full Name" value={youngForm.fullName} onChange={(e) => handleChange(e, setYoungForm)} required />
-              <input name="age" type="number" placeholder="Age" value={youngForm.age} onChange={(e) => handleChange(e, setYoungForm)} required />
-              <input name="email" type="email" placeholder="Email" value={youngForm.email} onChange={(e) => handleChange(e, setYoungForm)} required />
-              <input name="phone" placeholder="Phone" value={youngForm.phone} onChange={(e) => handleChange(e, setYoungForm)} required />
-              <textarea name="address" placeholder="Address" value={youngForm.address} onChange={(e) => handleChange(e, setYoungForm)} required />
+              {['fullName', 'age', 'email', 'phone'].map((name) => (
+                <input
+                  key={name}
+                  name={name}
+                  type={name === 'age' ? 'number' : name === 'email' ? 'email' : 'text'}
+                  placeholder={name[0].toUpperCase() + name.slice(1)}
+                  value={youngForm[name]}
+                  onChange={(e) => handleChange(e, setYoungForm)}
+                  required
+                />
+              ))}
+              <textarea
+                name="address"
+                placeholder="Address"
+                value={youngForm.address}
+                onChange={(e) => handleChange(e, setYoungForm)}
+                required
+              />
               <button type="submit">Submit</button>
             </form>
           </div>
@@ -139,5 +246,6 @@ const Events = () => {
     </section>
   );
 };
+
 
 export default Events;

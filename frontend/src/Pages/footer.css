@@ -1,0 +1,115 @@
+.footer {
+  background-color: #006d4d; /* darker green */
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  border-top: 5px solid #00b894; /* bright green accent */
+  box-shadow: none;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.footer-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.footer-section {
+  margin-bottom: 30px;
+}
+
+.footer-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.footer-section p,
+.footer-section span,
+.footer-section a {
+  color: #ecf0f1;
+  font-size: 0.95rem;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.footer-section input[type="email"] {
+  padding: 10px;
+  width: 70%;
+  max-width: 300px;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  outline: none;
+}
+
+.footer-section button {
+  padding: 10px 20px;
+  background-color: #00b894; /* matching accent green */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.footer-section button:hover {
+  background-color: #55efc4; /* light mint green */
+}
+
+/* Social Media Icons */
+.icons a {
+  margin: 0 10px;
+  font-size: 24px;
+  color: #00cec9; /* blue-green */
+  transition: transform 0.3s, color 0.3s;
+}
+
+.icons a:hover {
+  transform: scale(1.2) rotate(5deg);
+  color: #b2f7ef; /* soft mint hover */
+}
+
+/* Bottom Footer Section */
+.footer-bottom {
+  margin-top: 30px;
+  font-size: 0.85rem;
+  border-top: 1px solid #ecf0f1;
+  padding-top: 15px;
+  color: #ecf0f1;
+}
+.subscribe-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+}
+
+.btn-content {
+  display: inline-flex;
+  align-items: center;
+}
+.spinner {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #333;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  animation: spin 0.6s linear infinite;
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: middle;
+  /* Keep it aligned with the text */
+  position: relative;
+  top: -1px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -7,6 +7,7 @@ const authRoutes = require("./routes/authRoutes");
 const registrationRoutes = require("./routes/registrationRoutes");
 const testimonyVoluntaryRoutes =  require('./routes/testimonyVoluntaryRoutes');
 const prayerRequestRoutes = require('./routes/prayerRequests');
+const subscriberRoutes = require('./routes/subscriberRoutes'); 
 
 const app = express()
 
@@ -33,6 +34,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/registration", registrationRoutes);
 app.use('/api/testimonies-volunteers', testimonyVoluntaryRoutes);
 app.use('/api/prayerRequests', prayerRequestRoutes);
+app.use('/api/subscribe', subscriberRoutes);
 
 
 // DB Connection
